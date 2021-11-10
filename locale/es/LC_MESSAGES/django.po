@@ -1,0 +1,662 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-10-26 22:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: authentication/backends.py:18 authentication/backends.py:21
+msgid "Your URL may have expired."
+msgstr "Es posible tu URL haya expirado"
+
+#: authentication/models.py:8 card/models.py:44
+msgid "image"
+msgstr "imagen"
+
+#: authentication/models.py:9
+msgid "title"
+msgstr "título"
+
+#: authentication/models.py:10 dashboard/models.py:13
+msgid "phone"
+msgstr "teléfono"
+
+#: authentication/models.py:19
+msgid "address"
+msgstr "dirección"
+
+#: authentication/models.py:26
+#: theme/templates/components/tables/user_table.html:11
+msgid "User"
+msgstr "Usuario"
+
+#: authentication/models.py:27 web/templates/web/about.html:32
+msgid "Users"
+msgstr "Usuarios"
+
+#: authentication/templates/authentication/login.html:7
+#: authentication/templates/authentication/login.html:8
+msgid "Login"
+msgstr "Ingresar"
+
+#: authentication/templates/authentication/login.html:14
+msgid "Don't have and account yet?"
+msgstr "¿Aún no tienes una cuenta?"
+
+#: authentication/templates/authentication/register.html:6
+#: authentication/templates/authentication/register.html:8
+msgid "Register"
+msgstr "Registrarme"
+
+#: authentication/views.py:27
+msgid "Welcome to Identicard"
+msgstr "Bienvenido a Identicard"
+
+#: card/forms.py:12
+msgid "Full name"
+msgstr "Nombre completo"
+
+#: card/forms.py:14 theme/templates/components/tables/booking_table.html:11
+#: web/templates/web/contact.html:16
+msgid "Phone"
+msgstr "Teléfono"
+
+#: card/forms.py:15
+msgid "Message"
+msgstr "Mensaje"
+
+#: card/models.py:10 card/models.py:43 dashboard/models.py:11
+msgid "name"
+msgstr "nombre"
+
+#: card/models.py:23
+msgid "Determine the primary color of your Identicard"
+msgstr "Determina el color primario de tu Identicard"
+
+#: card/models.py:25
+msgid "This icon will show as app icon. 512x512 px"
+msgstr "Este icon se mostrará como el icono de aplicativo. 512x512 px"
+
+#: card/models.py:25
+msgid "icon"
+msgstr "ícono"
+
+#: card/models.py:26
+msgid "This icon will show as app icon. 192x192 px"
+msgstr "Este icon se mostrará como el icono de aplicativo. 192x192 px"
+
+#: card/models.py:26
+msgid "icon small"
+msgstr "ícono pequeño"
+
+#: card/models.py:27
+msgid "Suggested size: 1920x1080 px"
+msgstr "Tamaño sugerido: 1920x1080 px"
+
+#: card/models.py:28
+msgid "external catalog link"
+msgstr "Enlace a catálogo externo"
+
+#: card/models.py:29 card/models.py:45 dashboard/models.py:14
+msgid "description"
+msgstr "descripción"
+
+#: card/models.py:30
+msgid "featured image"
+msgstr "imagen destacada"
+
+#: card/models.py:31
+msgid "featured text"
+msgstr "texto destacado"
+
+#: card/models.py:32
+msgid "This fields only accepts Youtube links"
+msgstr "Este campo solo acepta enlaces de Youtube"
+
+#: card/models.py:33
+msgid "Paste spotify link to playlist"
+msgstr "Pega el link del playlist de spotify"
+
+#: card/models.py:34
+msgid "qr code"
+msgstr "código qr"
+
+#: card/models.py:46
+msgid "price"
+msgstr "precio"
+
+#: card/models.py:48
+msgid "active"
+msgstr "activo"
+
+#: card/models.py:55
+msgid "Suggested proportion: 9:16"
+msgstr "Proporción sugerida: 9:16"
+
+#: card/models.py:56
+msgid "Maximun characters: 150"
+msgstr "Máximo de caracteres: 150"
+
+#: card/templates/card/landing.html:66
+msgid "Are you interested? Let's get in touch"
+msgstr "¿Estás interesado? Contáctame"
+
+#: card/views.py:75
+msgid "Slots available"
+msgstr "Horarios disponibles"
+
+#: card/views.py:96
+msgid "Date booked successfully"
+msgstr "Cita agendada con éxito"
+
+#: card/views.py:101
+msgid "Your message has been sent successfully"
+msgstr "Tu mensaje ha sido enviado con éxito"
+
+#: card/views.py:110 web/views.py:14
+msgid "Your message has been received"
+msgstr "Tu mensahe ha sido recibido"
+
+#: card/views.py:111 web/views.py:15
+msgid ""
+"I have received your message and I will contact you as soon as possible."
+msgstr "He recibido tu mensaje y me contactaré contigo lo más pronto posible"
+
+#: card/views.py:116
+msgid " wants to contact you"
+msgstr " quiere contactarse contigo"
+
+#: dashboard/forms.py:12
+msgid "The email address for the account owner"
+msgstr "El email del dueño de la cuenta"
+
+#: dashboard/forms.py:25
+msgid "Maximun characters: 50"
+msgstr "Máximo de caracteres: 50"
+
+#: dashboard/forms.py:26
+msgid "Maximun characters: 126"
+msgstr "Máximo de caracteres: 126"
+
+#: dashboard/forms.py:27
+msgid "You can provide a link to redirect your users upon clicking on notification"
+msgstr "Puedes proveer un enlace hacia donde redirigir tus usuarios con den click a la notificación"
+
+#: dashboard/models.py:9
+msgid "date"
+msgstr "fecha"
+
+#: dashboard/models.py:10
+msgid "slot"
+msgstr "horario"
+
+#: dashboard/models.py:38
+msgid "range"
+msgstr "rango"
+
+#: dashboard/models.py:38
+msgid "Slots range"
+msgstr "Rango de horarios"
+
+#: dashboard/models.py:39
+msgid "number of days"
+msgstr "número de días"
+
+#: dashboard/models.py:39
+msgid "Max number of days in th future allowed"
+msgstr "Máximo número de días en el futuro permitidos"
+
+#: dashboard/models.py:40
+msgid "holidays"
+msgstr "feriados"
+
+#: dashboard/models.py:40
+msgid "Holidays or not working days"
+msgstr "Feriados o días no laborables"
+
+#: dashboard/models.py:41
+msgid "monday"
+msgstr "lunes"
+
+#: dashboard/models.py:42
+msgid "tuesday"
+msgstr "martes"
+
+#: dashboard/models.py:43
+msgid "wednesday"
+msgstr "miércoles"
+
+#: dashboard/models.py:44
+msgid "thursday"
+msgstr "jueves"
+
+#: dashboard/models.py:45
+msgid "friday"
+msgstr "viernes"
+
+#: dashboard/models.py:46
+msgid "saturday"
+msgstr "sábado"
+
+#: dashboard/models.py:47
+msgid "sunday"
+msgstr "domingo"
+
+#: dashboard/templates/dashboard/card.html:15
+msgid "You can update your Identicard here"
+msgstr "Puedes actualizar tu Identicard aquí"
+
+#: dashboard/templates/dashboard/card.html:22
+msgid "Generate your own QR"
+msgstr "Genera tu propio QR"
+
+#: dashboard/templates/dashboard/card.html:34
+msgid "Services"
+msgstr "Servicios"
+
+#: dashboard/templates/dashboard/dashboard.html:14
+msgid "Total installations"
+msgstr "Total de instalaciones"
+
+#: dashboard/templates/dashboard/dashboard.html:26
+msgid "Total contact messages"
+msgstr "Total de mensajes de contacto"
+
+#: dashboard/templates/dashboard/dashboard.html:38
+msgid "Total visits booked"
+msgstr "Total de visitas agendadas"
+
+#: dashboard/templates/dashboard/landing.html:5
+msgid "You can update your landing page here"
+msgstr "Puedes actualizar tu landing page aquí"
+
+#: dashboard/templates/dashboard/notifications.html:5
+msgid "Send a notification to your clients"
+msgstr "Envia una notificación a tus clientes"
+
+#: dashboard/templates/dashboard/organization/organization.html:9
+msgid "Don't have an organization?"
+msgstr "¿No tienes una organización?"
+
+#: dashboard/templates/dashboard/organization/organization.html:10
+msgid "Create one"
+msgstr "Crea una"
+
+#: dashboard/templates/dashboard/organization/organization.html:20
+msgid "Invite"
+msgstr "Invita"
+
+#: dashboard/templates/dashboard/organization/organization.html:23
+msgid "Send an invitation"
+msgstr "Envia una invitación"
+
+#: dashboard/templates/dashboard/organization/organization_create.html:9
+msgid "Create your organization"
+msgstr "Crea una organización"
+
+#: dashboard/templates/dashboard/organization/organization_create.html:10
+msgid "Create"
+msgstr "Crear"
+
+#: dashboard/views.py:67
+msgid "Profile updated successfully"
+msgstr "Perfil actualizado correctamente"
+
+#: dashboard/views.py:92
+msgid "Identicard updated successfully"
+msgstr "Identicard actualizado correctamente"
+
+#: dashboard/views.py:165
+msgid "Services updated successfully"
+msgstr "Servicios actualizados correctamente"
+
+#: dashboard/views.py:195
+msgid "Image updated successfully"
+msgstr "Imagen actualizada correctamente"
+
+#: dashboard/views.py:310
+msgid "Booking settings updated successfully"
+msgstr "Configuración de agenda actualizada correctamente"
+
+#: dashboard/views.py:368
+msgid "Notification sent successfully"
+msgstr "Notificación enviada correctamente"
+
+#: dashboard/views.py:370
+msgid "No device to send to"
+msgstr "No tiene dispositivos que notificar"
+
+#: dashboard/views.py:381
+msgid "We have created a new landing page for you"
+msgstr "Hemos creado un nuevo landing page para ti"
+
+#: theme/templates/base.html:35
+msgid "Home"
+msgstr "Inicio"
+
+#: theme/templates/base.html:36
+msgid "About Us"
+msgstr "Nosotros"
+
+#: theme/templates/base.html:37
+msgid "Contact"
+msgstr "Contacto"
+
+#: theme/templates/components/form.html:32
+#: theme/templates/components/forms/formset.html:33
+#: theme/templates/components/modals/form_modal.html:32
+msgid "Send"
+msgstr "Enviar"
+
+#: theme/templates/components/modals/crop_modal.html:20
+msgid "Cancel"
+msgstr "Cancelar"
+
+#: theme/templates/components/modals/crop_modal.html:23
+msgid "Save"
+msgstr "Guardar"
+
+#: theme/templates/components/tables/booking_table.html:7
+msgid "Date"
+msgstr "Fecha"
+
+#: theme/templates/components/tables/booking_table.html:8
+msgid "Time"
+msgstr "Horario"
+
+#: theme/templates/components/tables/booking_table.html:9
+msgid "Name"
+msgstr "Nombre"
+
+#: theme/templates/components/tables/booking_table.html:12
+msgid "Description"
+msgstr "Descripción"
+
+#: theme/templates/components/tables/booking_table.html:47
+#: theme/templates/components/tables/user_table.html:35
+msgid "Prev"
+msgstr "Ant"
+
+#: theme/templates/components/tables/booking_table.html:48
+#: theme/templates/components/tables/user_table.html:36
+msgid "Next"
+msgstr "Sig"
+
+#: theme/templates/components/tables/user_table.html:13
+msgid "Last Login"
+msgstr "Ultimo Ingreso"
+
+#: theme/templates/components/tables/user_table.html:14
+msgid "Status"
+msgstr "Estado"
+
+#: theme/templates/components/tables/user_table.html:17
+msgid "Actions"
+msgstr "Acciones"
+
+#: theme/templates/components/tables/user_table_row.html:14
+msgid "Member"
+msgstr "Miembro"
+
+#: theme/templates/components/tables/user_table_row.html:22
+msgid "Active"
+msgstr "Activo"
+
+#: theme/templates/components/tables/user_table_row.html:22
+msgid "Inactive"
+msgstr "Inactivo"
+
+#: theme/templates/dashboard/layout/header.html:20
+#: theme/templates/dashboard/layout/sidebar.html:24
+msgid "My Identicard"
+msgstr "Mi Identicard"
+
+#: theme/templates/dashboard/layout/header.html:21
+msgid "Logout"
+msgstr "Salir"
+
+#: theme/templates/dashboard/layout/sidebar.html:19
+msgid "Update info"
+msgstr "Actualizar datos"
+
+#: theme/templates/dashboard/layout/sidebar.html:30
+msgid "Booking"
+msgstr "Agenda"
+
+#: theme/templates/dashboard/layout/sidebar.html:36
+msgid "My organization"
+msgstr "Mi organización"
+
+#: theme/templates/dashboard/layout/sidebar.html:41
+msgid "Send notifications"
+msgstr "Enviar notificaciones"
+
+#: theme/templates/dashboard/layout/sidebar.html:47
+msgid "Landing page"
+msgstr "Landing page"
+
+#: theme/templates/email/register.html:3
+msgid "You just joined to"
+msgstr "Te acabas de unir a"
+
+#: theme/templates/email/register.html:4
+msgid "In order to create your own Identicard,"
+msgstr "Para crear tu propia Identicard"
+
+#: theme/templates/email/register.html:4
+msgid "Please access your"
+msgstr "Por favor ingresa a tu"
+
+#: theme/templates/email/register.html:4
+msgid "with the next credentials"
+msgstr "con las siguientes credenciales"
+
+#: theme/templates/email/register.html:7
+msgid "The one you used to register"
+msgstr "La que utilizaste al registrarte"
+
+#: theme/templates/email/register.html:10
+msgid "Thanks"
+msgstr "Gracias"
+
+#: theme/templates/organizations/email/invitation_body.html:2
+msgid "You've been invited to join"
+msgstr "Haz sido invitado a unirte a"
+
+#: theme/templates/organizations/email/invitation_body.html:2
+msgid "on"
+msgstr "en"
+
+#: theme/templates/organizations/email/invitation_body.html:2
+msgid "by"
+msgstr "por"
+
+#: theme/templates/organizations/email/invitation_body.html:4
+msgid "Follow this link to create your user account"
+msgstr "Sigue este link para crear tu cuenta"
+
+#: theme/templates/organizations/email/invitation_body.html:8
+msgid "If you are unsure about this link please contact the sender"
+msgstr "Si no estás seguro sobre este link, por favor contacta al remitente"
+
+#: theme/templates/organizations/email/invitation_subject.txt:2
+msgid "You've been invited!"
+msgstr "Haz recibido una invitación"
+
+#: theme/templates/organizations/register_form.html:5
+msgid "Complete your registration"
+msgstr "Completa tu registro"
+
+#: theme/templates/organizations/register_success.html:2
+msgid "Thanks!"
+msgstr "Gracias"
+
+#: web/templates/web/about.html:9
+msgid "Get to know us"
+msgstr "Conócenos"
+
+#: web/templates/web/about.html:42
+msgid "Sent notifications"
+msgstr "Notificaciones enviadas"
+
+#: web/templates/web/contact.html:9
+msgid "Address"
+msgstr "Dirección"
+
+#: web/templates/web/contact.html:29
+msgid "Contact us"
+msgstr "Comunicate con nosotros"
+
+#: web/templates/web/home.html:17 web/templates/web/home.html:41
+msgid "Design your own Identicard"
+msgstr "Diseña tu propia Identicard"
+
+#: web/templates/web/home.html:29
+msgid "Your best side and project"
+msgstr "Tu mejor perfil y proyecto"
+
+#: web/templates/web/home.html:50 web/templates/web/home.html:60
+msgid "Start now"
+msgstr "Empieza ya"
+
+#~ msgid "{editor}: Editing failed"
+#~ msgstr "{editor}: Edición falló"
+
+#~ msgid "{editor}: Editing failed: {e}"
+#~ msgstr "{editor}: Edición falló: {e}"
+
+#~ msgid "Options"
+#~ msgstr "Opciones"
+
+#~ msgid "Repeat for confirmation"
+#~ msgstr "Repite para confirmar"
+
+#~ msgid "Messages"
+#~ msgstr "Mensajes"
+
+#~ msgid "Syndication"
+#~ msgstr "Sindicación"
+
+#~ msgid "This field cannot be null."
+#~ msgstr "Este campo no puede ser nulo"
+
+#~ msgid "This field cannot be blank."
+#~ msgstr "Este campo no puede estar vacio"
+
+#~ msgid "Duration"
+#~ msgstr "Duración"
+
+#~ msgid "Email address"
+#~ msgstr "Dirección de email"
+
+#~ msgid "Image"
+#~ msgstr "Imagen"
+
+#~ msgid "Delete"
+#~ msgstr "Borrar"
+
+#~ msgid "Change"
+#~ msgstr "Cambiar"
+
+#~ msgid "Monday"
+#~ msgstr "Lunes"
+
+#~ msgid "Tuesday"
+#~ msgstr "Martes"
+
+#~ msgid "Wednesday"
+#~ msgstr "Miércoles"
+
+#~ msgid "Thursday"
+#~ msgstr "Jueves"
+
+#~ msgid "Friday"
+#~ msgstr "Viernes"
+
+#~ msgid "Saturday"
+#~ msgstr "Sábado"
+
+#~ msgid "Sunday"
+#~ msgstr "Domingo"
+
+#~ msgid "The name in all lowercase, suitable for URL identification"
+#~ msgstr "El nombre en minísculas, utilizado para generar el URL"
+
+#~ msgid "organization"
+#~ msgstr "organización"
+
+#~ msgid "organizations"
+#~ msgstr "organizaciones"
+
+#~ msgid "organization user"
+#~ msgstr "organización usuario"
+
+#~ msgid "organization users"
+#~ msgstr "orgabnización usuarios"
+
+#~ msgid "organization owner"
+#~ msgstr "organización propietario"
+
+#~ msgid "organization owners"
+#~ msgstr "organización propietarios"
+
+#~ msgid "This is not your invitation"
+#~ msgstr "Esta no es tu invitación"
+
+#~ msgid "The name of the organization"
+#~ msgstr "El nombre de la organización"
+
+#~ msgid "Would you like to join?"
+#~ msgstr "¿Te gustaría unirte?"
+
+#~ msgid "Join"
+#~ msgstr "Únete"
+
+#~ msgid "Forgotten your password?"
+#~ msgstr "¿Olvidaste tu contraseña?"
+
+#~ msgid "Reset it"
+#~ msgstr "Restaura"
+
+#~ msgid "Are you sure you want to delete this organization?"
+#~ msgstr "¿Estás seguro que quiere eliminar esta organización?"
+
+#~ msgid "Edit"
+#~ msgstr "Editar"
+
+#~ msgid "Add a member"
+#~ msgstr "Agregar un miembro"
+
+#~ msgid "Send reminder"
+#~ msgstr "enviar recordatorio"
+
+#~ msgid "This is you"
+#~ msgstr "Este eres tu"
+
+#~ msgid "Update your profile"
+#~ msgstr "Actualiza el perfil"
+
+#~ msgid "User is already active"
+#~ msgstr "El usuario ya está activado"
+
+#~ msgid "Wrong organization"
+#~ msgstr "Organización equivocada"
+
+#~ msgid "You are not the organization owner"
+#~ msgstr "Tu no eres el dueño de la organización"
+
+#~ msgid "Paste embeded Soundcloud html"
+#~ msgstr "Pega el html embedido de Soundcloud"

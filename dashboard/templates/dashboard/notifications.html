@@ -1,0 +1,7 @@
+{% extends 'dashboard/layout/base.html' %}
+{% load i18n %}
+
+{% block content %}
+  {% translate 'Send a notification to your clients' as form_title %}
+  {% include 'components/form.html' with form_title=form_title %}
+{% endblock content %}

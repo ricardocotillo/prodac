@@ -1,0 +1,32 @@
+{% extends 'dashboard/layout/base.html' %}
+{% load static i18n %}
+{% block js %}
+  <script defer src="{% static 'dashboard/js/org.js' %}"></script>
+{% endblock js %}
+{% block content %}
+  {% if not organization %}
+    <div class="flex flex-col items-center">
+      <p class="text-gray-400 italic">{% translate "Don't have an organization?" %}</p>
+      <a href="{% url 'organization_create' %}"><button class='bg-info mt-2 text-light'>{% translate 'Create one' %}</button></a>
+    </div>
+  {% else %}
+    <h1 class="text-center">{{ organization }}</h1>
+    <div class="mt-8">
+      <div class="mt-6">
+        <div class="flex justify-between items-end text-light">
+          {% if is_admin %}
+            <button id="create-org-user" class="bg-success flex items-center">
+              <span class="material-icons">add</span>
+              {% translate 'Invite' %}
+            </button>
+            {% url 'organization_add_member' as the_url %}
+            {% translate 'Send an invitation' as form_title %}
+            {% include 'components/modals/form_modal.html' with action=the_url method='POST' form_title=form_title with_labels=True %}
+          {% endif %}
+        </div>
+        {% url 'organization_members' as orguser_url %}
+        {% include 'components/tables/user_table.html' with pagination_url=orguser_url %}
+      </div>
+    </div>
+  {% endif %}
+{% endblock content %}

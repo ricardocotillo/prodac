@@ -1,0 +1,36 @@
+{% load i18n webtags %}
+<div
+  x-data="{% if x_data %}{{ x_data }}{% else %}modalFormData(){% endif %}"
+  x-show="open"
+  x-transition
+  x-cloak
+  @formmodal:open.window="open = true"
+  class="p-6 bg-white rounded-md shadow-md absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2"
+>
+  {% if form_title %}
+    <div class="flex justify-end">
+      <span @click="close" class="material-icons cursor-pointer">close</span>
+    </div>
+    <h2 class="text-lg text-gray-700 font-semibold capitalize">{{ form_title }}</h2>
+  {% endif %}
+  <form action="{{ action }}" method="{{ method }}" class="{{ form_class }}" @submit="onSubmit" >
+    {% csrf_token %}
+    <div class="grid grid-cols-1 {% if direction and direction == 'horizontal' %}sm:grid-cols-2{% endif %} gap-6 mt-4">
+      {% for f in form %}
+        <div x-ref="{{ f.auto_id }}" class="{% if f.auto_id == hide_id %}hidden{% endif %}">
+          {% if with_labels %}
+            <label class="text-gray-700" for="{{ f.auto_id }}">{{ f.label }}</label>
+          {% endif %}
+          {{ f|input }}
+          <small class="text-error text-xs"></small>
+        </div>
+      {% endfor %}
+    </div>
+    <div class="flex justify-end mt-4">
+      <button type="submit" class="bg-primary text-light flex items-center rounded-md focus:outline-none">
+        {% include 'components/indicators/spinner.html' %}
+        <span class="ml-1">{% if btn_text %}{{ btn_text }}{% else %}{% translate 'Send' %}{% endif %}</span>
+      </button>
+    </div>
+  </form>
+</div>

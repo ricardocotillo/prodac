@@ -1,0 +1,46 @@
+{% load static i18n tailwind_tags %}
+<!DOCTYPE html>
+<html lang="en" class="notranslate" translate="no">
+	<head>
+    <title>Identicard</title>
+    <meta charset="UTF-8">
+    <meta name="google" content="notranslate" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta property="og:image" content="{% static 'card/img/logo.svg' %}">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="1024">
+    <meta property="og:image:height" content="1024">
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="{% url 'home' %}"/>
+    <meta property="og:title" content="Identicard" />
+    <meta property="og:description" content="Identicard" />
+    <link rel="icon" type="image/png" href="{% static 'icons/favicon.png' %}">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    {% tailwind_css %}
+    {% block css %}{% endblock css %}
+    <script defer src="{% static 'js/base.js' %}"></script>
+    {% block js %}{% endblock js %}
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+	</head>
+
+	<body class="leading-normal tracking-normal">
+		<nav class="shadow-md py-3">
+			<div class="container mx-auto flex flex-col md:flex-row items-center md:items-end">
+        <div class="flex justify-between w-full md:w-auto items-center px-2">
+          <a href="{% url 'home' %}"><img src="{% static 'card/img/logo.svg' %}" class="w-48" /></a>
+          {% include 'components/language_selector.html' with mobile='True' %}
+        </div>
+        <ul class="flex justify-around w-full font-bold text-primary">
+          <li><a href="{% url 'home' %}">{% translate 'Home' %}</a></li>
+          <li><a href="{% url 'about' %}">{% translate 'About Us' %}</a></li>
+          <li><a href="{% url 'contact' %}">{% translate 'Contact' %}</a></li>
+        </ul>
+        {% include 'components/language_selector.html' %}
+      </div>
+		</nav>
+		<main>
+			{% block content %}{% endblock content %}
+		</main>
+	</body>
+</html>

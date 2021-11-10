@@ -1,0 +1,12 @@
+<div class="flex max-w-sm w-full bg-white shadow-md rounded-lg overflow-hidden items-stretch">
+  <div class="flex justify-center items-center w-12" :class="`bg-${alert.level_tag}`" ></div>
+  <div class="-mx-3 py-2 px-4">
+    <div class="mx-3">
+      <span class="font-semibold" :class="`text-${alert.level_tag}`" x-text="(alert.level_tag)" ></span>
+      <p class="text-gray-600 text-sm" x-text="alert.message"></p>
+    </div>
+  </div>
+  <div class="flex items-center">
+    <span class="material-icons text-gray-500 p-2 text-base cursor-pointer" x-on:click="removeAlert(i)">close</span>
+  </div>
+</div>

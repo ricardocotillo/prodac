@@ -1,0 +1,12 @@
+{% extends 'dashboard/layout/base.html' %}
+{% load static i18n %}
+{% block js %}
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/speakingurl/13.0.0/speakingurl.min.js"></script>
+  <script defer src="{% static 'dashboard/js/createOrg.js' %}"></script>
+{% endblock js %}
+
+{% block content %}
+  {% translate 'Create your organization' as form_title %}
+  {% translate 'Create' as btn_text %}
+  {% include 'components/form.html' with x_data='orgFormData()' with_labels='True' form_title=form_title btn_text=btn_text method="POST" %}
+{% endblock content %}

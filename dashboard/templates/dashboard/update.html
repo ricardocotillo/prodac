@@ -1,0 +1,28 @@
+{% extends 'dashboard/layout/base.html' %}
+{% load static i18n %}
+
+{% block css %}
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.css" integrity="sha512-0SPWAwpC/17yYyZ/4HSllgaK7/gg9OlVozq8K7rf3J8LvCjYEEIfzzpnA2/SSjpGIunCSD18r3UhvDcu/xncWA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+{% endblock css %}
+{% block js %}
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.js" integrity="sha512-ooSWpxJsiXe6t4+PPjCgYmVfr1NS5QXJACcR/FPpsdm6kqG1FmQ2SVyg2RXeVuCRBLr0lWHnWJP6Zs1Efvxzww==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script defer src="{% static 'dashboard/js/update.js' %}"></script>
+{% endblock js %}
+
+{% block content %}
+  <div x-data="profileImageData" class="relative cursor-pointer w-40 h-40 mx-auto group" @click="onClick" @image:cropped.window="croppedImg">
+    <img x-ref="mainProfileImage" class="object-cover object-center rounded-full" src="{% if user.image %}{{ user.image.url }}{% else %}{% static 'dashboard/img/profile.png' %}{% endif %}" alt="">
+    <template x-if="!loading">
+      <span class="material-icons hidden text-gray-300 group-hover:block absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">photo_camera</span>
+    </template>
+    {% include 'components/indicators/spinner.html' %}
+    <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}" x-ref="token" />
+    <input type="hidden" name="save_url" value="{% url 'update_image' %}" x-ref="saveURL" />
+    <input @change="onChange" x-ref="imgInput" type="file" class="hidden">
+  </div>
+  <div class="mt-4">
+    {% url 'update' as update_url %}
+    {% include 'components/form.html' with direction='horizontal' method='POST' action=update_url %}
+  </div>
+  {% include 'components/modals/crop_modal.html' with event_name='modal:open' x_data='cropModalData' on_save='onSave' on_cancel='onCancel' %}
+{% endblock content %}

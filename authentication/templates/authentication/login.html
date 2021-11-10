@@ -1,0 +1,16 @@
+{% extends "authentication/base.html" %}
+{% load static i18n %}
+
+{% block content %}
+  <div class="md:w-1/3 mx-auto mt-14">
+    <img class="w-72 mx-auto mb-10" src="{% static 'card/img/logo.svg' %}" alt="">
+    <h2 class="text-center">{% translate 'Login' %}</h2>
+    {% translate 'Login' as btn_text %}
+    {% include 'components/form.html' with method="POST" btn_text=btn_text x_data='{ loading: false, onSubmit() {} }' %}
+  </div>
+  <div class="flex justify-center mt-2">
+  {% comment %} ¿Aún no tienes una cuenta? {% endcomment %}
+    <a href="{% url 'register' %}" class="text-primary font-medium">{% translate "Don't have and account yet?" %}</a>
+  </div>
+{% endblock content %}
+

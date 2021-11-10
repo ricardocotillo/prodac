@@ -1,0 +1,25 @@
+{% load static i18n %}
+<header class="flex justify-between items-center py-4 px-6 bg-white border-b-4 border-primary">
+  <div class="flex items-center">
+    <button @click="sidebarOpen = true" class="text-gray-500 focus:outline-none lg:hidden">
+      <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M4 6H20M4 12H20M4 18H11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+  </div>
+  
+  <div class="flex items-center">
+    {% include 'components/language_selector.html' %}
+    {% include 'components/language_selector.html' with mobile='true' %}
+    <div x-data="{ dropdownOpen: false }" @profileimage:update.window="$refs.profileImage.src = $event.detail.src"  class="relative ml-4">
+      <div @click="dropdownOpen = ! dropdownOpen" class="relative block h-8 w-8 rounded-full overflow-hidden shadow focus:outline-none cursor-pointer">
+        <img x-ref="profileImage" class="h-full w-full object-cover" src="{% if user.image %}{{ user.image.url }}{% else %}{% static 'dashboard/img/profile.png' %}{% endif %}" alt="Your avatar">
+      </div>
+      <div x-show="dropdownOpen" @click="dropdownOpen = false" class="fixed inset-0 h-full w-full z-10"></div>
+      <div x-cloak x-show="dropdownOpen" class="absolute right-0 mt-2 w-48 bg-white rounded-md overflow-hidden shadow-xl z-10">
+        <a href="{% url 'card' request.user.card.slug %}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-primary hover:text-white">{% translate 'My Identicard' %}</a>
+        <a href="{% url 'logout' %}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-primary hover:text-white">{% translate "Logout" %}</a>
+      </div>
+    </div>
+  </div>
+</header>

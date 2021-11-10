@@ -1,0 +1,19 @@
+{% extends 'dashboard/layout/base.html' %}
+
+{% load webtags %}
+
+{% block css %}
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+{% endblock css %}
+
+{% block js %}
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  {{ form.media }}
+{% endblock js %}
+
+{% block content %}
+  {% include 'components/form.html' with method="POST" %}
+  {% if request.user.card.appointments.exists %}
+    {% include 'components/tables/booking_table.html' %}
+  {% endif %}
+{% endblock content %}

@@ -1,0 +1,10 @@
+{% load i18n %}
+
+{% translate 'You just joined to' %} Identicard.space<br>
+{% translate 'In order to create your own Identicard,' %} {% translate 'Please access your' %} <a href="{{ url }}">dashboard</a> {% translate 'with the next credentials' %}:<br>
+
+<strong>Email:</strong> {{ user.email }}<br>
+<strong>Contraseña:</strong> {% translate 'The one you used to register' %}<br>
+<br>
+<br>
+{% translate 'Thanks' %}

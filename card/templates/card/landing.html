@@ -1,0 +1,71 @@
+{% load static i18n tailwind_tags %}
+<!DOCTYPE html>
+<html lang="en" class="notranslate" translate="no">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="google" content="notranslate" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  {% tailwind_css %}
+  <script defer src="{% static 'js/base.js' %}"></script>
+  <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <title>{{ landing.card.user.first_name }} {{ landing.card.user.last_name }}</title>
+  {% with landing.card as card %}
+    <style type="text/css">
+      .text-primary {
+        color: {{ card.color }};
+      }
+      .hover\:text-primary:hover {
+        color: {{ card.color }};
+      }
+      .focus\:text-primary:focus {
+        color: {{ card.color }};
+      }
+      .bg-primary {
+        background-color: {{ card.color }};
+      }
+      .border-primary {
+        border-color: {{ card.color }};
+      }
+    </style>
+  {% endwith %}
+</head>
+{% comment %} abrir google maps {% endcomment %}
+<body>
+  {% with landing.card.user as user %}
+    <main class="container mx-auto flex flex-col md:flex-row my-14">
+      {% if landing.image %}
+        <div class="w-full">
+          <img class="w-full" src="{{ landing.image.url }}" />
+        </div>
+      {% endif %}
+      <div class="w-full bg-white rounded-r-none md:rounded-r-md">
+        <div class="flex justify-center my-4 ">
+          <img class="w-52 rounded-full" src="{% if user.image %}{{ user.image.url }}{% else %}{% static 'dashboard/img/profile.png' %}{% endif %}" />
+        </div>
+        <div class="flex justify-center items-center">
+          {% if user.phone %}
+            <a
+              href="tel:{{ user.phone }}"
+              class="font-semibold text-white text-base mr-1 material-icons bg-primary w-8 h-8 inline-flex justify-center items-center rounded-full">phone</a>
+          {% endif %}
+          {% if user.email %}
+            <a
+              href="mailto:{{ user.email }}"
+              class="font-semibold text-white text-base mr-1 material-icons bg-primary w-8 h-8 inline-flex justify-center items-center rounded-full">email</a>
+          {% endif %}
+          {% if user.whatsapp %}
+            <a
+              href="https://wa.me/51{{ card.user.whatsapp }}" class="bg-primary rounded-full p-1 w-8 h-8 inline-flex justify-center items-center mt-1">
+              <img class="w-4" src="{% static 'icons/whatsapp.svg' %}" />
+            </a>
+          {% endif %}
+        </div>
+        {% translate "Are you interested? Let's get in touch" as form_title %}
+        {% include 'components/form.html' with form_title=form_title %}
+      </div>
+    </main>
+  {% endwith %}
+</body>
+</html>

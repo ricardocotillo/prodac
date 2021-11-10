@@ -1,0 +1,22 @@
+<div
+  x-data="multiDatePickerData({% if widget.value %}'{{ widget.value }}'{% endif %})"
+  class="multidate-picker relative"
+>
+  <input
+    id="{{ attrs.id }}"
+    type="hidden"
+    name="{{ widget.name }}"
+    {% if widget.required %}required{% endif %}
+    x-ref="input"
+    x-model="value"
+  />
+  <div x-ref="wrapper" class="border border-gray-500 rounded-md p-2 pr-8 mt-2 wrapper min-h-10">
+    <template x-for="(d, i) in dates" :key="d">
+      <span class="border border-gray-800 bg-gray-200 rounded-md px-2 py-1 mr-1 mt-1 inline-flex items-center">
+        <span x-text="d"></span>
+        <span @click="remove(i)" class="material-icons text-gray-500 cursor-pointer">close</span>
+      </span>
+    </template>
+  </div>
+  <span x-ref="action" class="action material-icons absolute right-2 top-1/2 -translate-y-1/2 cursor-pointer">event</span>
+</div>

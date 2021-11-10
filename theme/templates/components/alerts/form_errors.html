@@ -1,0 +1,5 @@
+{% for k, v in form.errors.items %}
+  {% for error in v %}
+    {% include 'components/alerts/error.html' with message=error %}
+  {% endfor %}
+{% endfor %}

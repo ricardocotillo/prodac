@@ -1,0 +1,40 @@
+{% extends 'dashboard/layout/base.html' %}
+{% load static i18n %}
+
+{% block css %}
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.css" integrity="sha512-0SPWAwpC/17yYyZ/4HSllgaK7/gg9OlVozq8K7rf3J8LvCjYEEIfzzpnA2/SSjpGIunCSD18r3UhvDcu/xncWA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+{% endblock css %}
+{% block js %}
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.js" integrity="sha512-ooSWpxJsiXe6t4+PPjCgYmVfr1NS5QXJACcR/FPpsdm6kqG1FmQ2SVyg2RXeVuCRBLr0lWHnWJP6Zs1Efvxzww==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/qrcode-svg@1.1.0/lib/qrcode.min.js"></script>
+  {{ form.media }}
+  <script defer src="{% static 'dashboard/js/card.js' %}"></script>
+  {{ card_url|json_script:'cardURL' }}
+{% endblock js %}
+{% block content %}
+  <h3 class="text-center">{% translate 'You can update your Identicard here' %}</h3>
+  <div id="svg-generator" class="flex justify-center mt-2">
+    {% if card.qrcode %}
+        <img src="{{ card.qrcode.url }}" class="w-64 h-64" />
+    {% else %}
+      <div x-data="qrData()" x-ref="wrapper" class="w-64 h-64 flex justify-center items-center">
+        <template x-if="!loading && !generated">
+          <button @click="onClick" class="bg-info text-white">{% translate 'Generate your own QR' %}</button>
+        </template>
+        <template x-if="loading && !generated">
+          {% include 'components/indicators/spinner.html' with border_color='border-indigo-500' %}
+        </template>
+      </div>
+    {% endif %}
+  </div>
+  <div class="flex justify-center mt-4">
+    {% include 'components/form.html' with direction='horizontal' with_labels='true' method='POST' form_tag_class='md:grid-cols-3' x_data="updateCard()" x_on='@qrcode:generated.window="storeQR"' hide_id='id_qrcode' %}
+  </div>
+  {% if card.permission and card.permission.allow_services %}
+    <h3 class="my-4 text-center">{% translate 'Services' %}</h3>
+    {% url 'services' as service_url %}
+    {% include 'components/forms/formset.html' with x_data='updateServices()' action=service_url method='POST' %}
+  {% endif %}
+
+  {% include 'components/modals/crop_modal.html' with event_name='modal:open' x_data='cropIconData' on_save='onSave' on_cancel='onCancel' %}
+{% endblock content %}

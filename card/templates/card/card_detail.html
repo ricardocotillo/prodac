@@ -1,0 +1,333 @@
+{% extends 'card/base.html' %}
+{% load static %}
+
+{% block css %}
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+  <link rel="manifest" href="{% url 'manifest' card.pk %}">
+{% endblock css %}
+
+{% block js %}
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  {% url 'card_available_slots' card.pk as slots_url %}
+  {{ slots_url|json_script:'slots-url' }}
+  {{ card.pk|json_script:'card-pk' }}
+  <script defer src="{% static 'card/js/card.js' %}"></script>
+{% endblock js %}
+{% block content %}
+  <style type="text/css">
+    .text-primary {
+      color: {{ card.color }};
+    }
+    .hover\:text-primary:hover {
+      color: {{ card.color }};
+    }
+    .focus\:text-primary:focus {
+      color: {{ card.color }};
+    }
+    .bg-primary {
+      background-color: {{ card.color }};
+    }
+    .border-primary {
+      border-color: {{ card.color }};
+    }
+    .spinner .path {
+        stroke: {{ card.color }};
+        stroke-linecap: round;
+        animation: dash 1.5s ease-in-out infinite;
+    }
+  </style>
+  {% with card.user as user %}
+    <nav class="container mx-auto flex justify-between items-center h-16">
+      <img class="h-8 md:h-10" src="{% if card.logo %}{{ card.logo.url }}{% else %}{% static 'card/img/logo.svg' %}{% endif %}" />
+      <div>
+        <button data-text="{{ card_url }}" class="bg-primary text-white rounded-full mx-1 px-2 py-1 text-sm inline-flex items-center copy-to-clipboard">
+          <span class="material-icons text-sm md:mr-1">link</span>
+          <span class="hidden md:inline">Link</span>
+        </button>
+        <button id="add-btn" class="bg-primary text-white rounded-full mx-1 px-2 py-1 text-sm inline-flex items-center">
+          <span class="material-icons text-sm md:mr-1">phone_iphone</span>
+          <span class="hidden md:inline">Agregar</span>
+        </button>
+        <a href="whatsapp://send?text={{ request.scheme }}://{{ request.get_host }}{{ request.get_full_path }}">
+          <button class="bg-primary text-white rounded-full mx-1 px-2 py-1 text-sm inline-flex items-center">
+            <span class="material-icons md:mr-1 text-sm">reply</span>
+            <span class="hidden md:inline" >Compartir</span>
+          </button>
+        </a>
+      </div>
+    </nav>
+    <div
+      id="nav-menu"
+      x-data="menuData"
+      class="fixed left-auto md:left-3 bottom-0 md:bottom-auto md:top-1/2 md:-translate-y-1/2 
+            flex justify-around items-center md:flex-col w-full md:w-auto
+            bg-primary py-2 md:rounded-md h-16 md:h-auto"
+    >
+      <a href="#home" @click="onClick" class="material-icons text-white text-4xl">home</a>
+      {% if card.permission.allow_services %}
+        <a href="#services" @click="onClick" class="material-icons text-white text-4xl">work</a>
+      {% endif %}
+      {% if card.permission.allow_booking %}
+        <a href="#booking" @click="onClick" class="material-icons text-white text-4xl">event</a>
+      {% endif %}
+      <a href="#contact" @click="onClick" class="material-icons text-white text-4xl">email</a>
+    </div>
+    <div class="fixed right-3 top-1/2 -translate-y-1/2 z-10">
+      {% if card.user.facebook %}
+        <a href="{{ card.user.facebook }}">
+          <svg
+            class="w-7"
+            width="6.8791666mm"
+            height="6.8791666mm"
+            viewBox="0 0 6.8791666 6.8791666"
+            version="1.1"
+            id="svg1243"
+            inkscape:version="1.1 (c68e22c387, 2021-05-23)"
+            sodipodi:docname="facebook.svg"
+            xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+            xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:svg="http://www.w3.org/2000/svg">
+            <sodipodi:namedview
+              id="namedview1245"
+              pagecolor="#ffffff"
+              bordercolor="#666666"
+              borderopacity="1.0"
+              inkscape:pageshadow="2"
+              inkscape:pageopacity="0.0"
+              inkscape:pagecheckerboard="0"
+              inkscape:document-units="mm"
+              showgrid="false"
+              inkscape:zoom="5.8725028"
+              inkscape:cx="34.653027"
+              inkscape:cy="14.55938"
+              inkscape:window-width="1920"
+              inkscape:window-height="1009"
+              inkscape:window-x="-8"
+              inkscape:window-y="-8"
+              inkscape:window-maximized="1"
+              inkscape:current-layer="layer1" />
+            <defs id="defs1240" />
+            <g
+              inkscape:label="Layer 1"
+              inkscape:groupmode="layer"
+              id="layer1"
+              transform="translate(-48.102892,-156.23396)"
+            >
+              <rect
+                style="fill:#ffffff;stroke-width:0.264583"
+                id="rect1280"
+                width="4.3252425"
+                height="5.6768813"
+                x="49.920509"
+                y="156.97026"
+              />
+              <g
+                id="g1249"
+                transform="matrix(0.26458333,0,0,0.26458333,48.102892,156.23396)"
+              >
+                <path
+                  class="fill-current text-primary"
+                  d="M 21.125,0 H 4.875 C 2.182,0 0,2.182 0,4.875 v 16.25 C 0,23.818 2.182,26 4.875,26 h 16.25 C 23.818,26 26,23.818 26,21.125 V 4.875 C 26,2.182 23.818,0 21.125,0 Z m -0.661,14.002 h -2.433 v 9.004 h -4.063 v -9.004 h -1.576 v -3.033 h 1.576 V 9.037 C 13.969,6.504 15.021,5 18.006,5 h 3.025 v 3.022 h -1.757 c -1.162,0 -1.238,0.433 -1.238,1.243 l -0.005,1.703 h 2.764 z"
+                  id="path1247"
+                />
+              </g>
+            </g>
+          </svg>
+        </a>
+      {% endif %}
+      {% if card.user.instagram %}
+        <a href="{{ card.user.instagram }}" class="bg-primary rounded-full p-1 w-7 h-7 flex justify-center items-center mt-1">
+          <img class="w-4" src="{% static 'icons/instagram.svg' %}" />
+        </a>
+      {% endif %}
+      {% if card.user.twitter %}
+        <a href="{{ card.user.twitter }}" class="bg-primary rounded-full p-1 w-7 h-7 flex justify-center items-center mt-1">
+          <img class="w-4" src="{% static 'icons/twitter.svg' %}" />
+        </a>
+      {% endif %}
+      {% if card.user.linkedin %}
+        <a href="{{ card.user.linkedin }}">
+          <svg
+            width="6.3499999mm"
+            height="6.3499999mm"
+            viewBox="0 0 6.3499999 6.3499999"
+            version="1.1"
+            id="svg5"
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:svg="http://www.w3.org/2000/svg"
+            class="w-7 mt-1 fill-current text-primary"
+          >
+            <defs
+              id="defs2" />
+            <g
+              id="layer1"
+              transform="translate(-28.903883,-129.10534)">
+              <rect
+                style="opacity:1;fill:#ffffff;stroke-width:0.264583"
+                id="rect59"
+                width="4.9109526"
+                height="5.2713895"
+                x="29.736044"
+                y="129.66718" />
+              <path
+                d="M 33.930967,129.10534 H 30.2268 c -0.730514,0 -1.322917,0.5924 -1.322917,1.32292 v 3.70416 c 0,0.73052 0.592403,1.32292 1.322917,1.32292 h 3.704167 c 0.730779,0 1.322916,-0.5924 1.322916,-1.32292 v -3.70416 c 0,-0.73052 -0.592137,-1.32292 -1.322916,-1.32292 z m -2.910417,5.02708 H 30.2268 v -2.91041 h 0.79375 z m -0.396875,-3.24591 c -0.255587,0 -0.463021,-0.20902 -0.463021,-0.46672 0,-0.2577 0.207434,-0.46673 0.463021,-0.46673 0.255588,0 0.463021,0.20903 0.463021,0.46673 0,0.2577 -0.207169,0.46672 -0.463021,0.46672 z m 3.571875,3.24591 H 33.4018 v -1.48272 c 0,-0.89112 -1.058333,-0.82365 -1.058333,0 v 1.48272 h -0.79375 v -2.91041 h 0.79375 v 0.46699 c 0.369358,-0.68422 1.852083,-0.73475 1.852083,0.6551 z"
+                id="path9"
+                style="stroke-width:0.264583" />
+            </g>
+          </svg>
+        </a>
+      {% endif %}
+      {% if card.user.telegram %}
+        <a href="{{ card.user.telegram }}" class="bg-primary rounded-full p-1 w-7 h-7 flex justify-center items-center mt-1">
+          <img class="w-4" src="{% static 'icons/telegram.svg' %}" />
+        </a>
+      {% endif %}
+      {% if card.user.youtube %}
+        <a href="{{ card.user.youtube }}" class="bg-primary rounded-full p-1 w-7 h-7 flex justify-center items-center mt-1">
+          <img class="w-4" src="{% static 'icons/youtube.svg' %}" />
+        </a>
+      {% endif %}
+      {% if card.user.web %}
+        <a href="{{ card.user.web }}" class="bg-primary rounded-full p-1 w-7 h-7 flex justify-center items-center mt-1">
+          <img class="w-4" src="{% static 'icons/worldwide.svg' %}" />
+        </a>
+      {% endif %}
+    </div>
+    <main
+      id="main-wrapper"
+      class="h-screen-calc-tray md:h-screen-calc w-screen overflow-y-auto bg-no-repeat bg-left-top bg-cover"
+      x-data="pageData"
+      style="background-image: url({% if card.background %}{{ card.background.url }}{% else %}{% static 'card/img/wall-1.webp' %}{% endif %})"
+    >
+      <section x-show="page == '#home'" x-transition id="home" class="h-screen-calc">
+        <div
+          class="px-5 flex flex-col items-center justify-center h-1/2 my-16"
+        >
+          <div class="flex flex-col md:flex-row items-center backdrop-blur-lg rounded-md md:rounded-full px-4 py-2">
+            <div>
+              {% if user.image %}
+                <img class="w-24 h-24 md:w-40 md:h-40 rounded-full mx-auto" src="{{ user.image.url }}" alt="">
+              {% endif %}
+            </div>
+            <div class="md:mx-10 text-center">
+              {% if user.phone %}
+                <a
+                  href="tel:{{ user.phone }}"
+                  class="font-semibold text-white text-base mr-1 material-icons bg-primary w-8 h-8 inline-flex justify-center items-center rounded-full">phone</a>
+              {% endif %}
+              {% if user.email %}
+                <a
+                  href="mailto:{{ user.email }}"
+                  class="font-semibold text-white text-base mr-1 material-icons bg-primary w-8 h-8 inline-flex justify-center items-center rounded-full">email</a>
+              {% endif %}
+              {% if card.user.whatsapp %}
+                <a
+                  href="https://wa.me/51{{ card.user.whatsapp }}" class="bg-primary rounded-full p-1 w-8 h-8 inline-flex justify-center items-center mt-1">
+                  <img class="w-4" src="{% static 'icons/whatsapp.svg' %}" />
+                </a>
+              {% endif %}
+              <h6 class="text-white uppercase">{{ user.first_name }} {{ user.last_name }}</h6>
+              <h6 class="text-white uppercase">{{ user.title }}</h6>
+              {% if card.video %}
+                <a href="#" class="flex justify-center mt-4">
+                  <button id="open-video" class="bg-gray-700 text-white flex items-center text-xs">
+                    <span class="material-icons mr-1">ondemand_video</span>
+                    Abre el video
+                  </button>
+                </a>
+              {% endif %}
+            </div>
+          </div>
+          {% if card.podcast and card.permission.allow_podcast %}
+            <div class="group relative">
+              <button class="text-center bg-primary p-2 mt-2 rounded-md text-white text-lg flex items-center">
+                <span id="audio-btn" class="material-icons text-white mr-2">play_circle</span>
+                <span>Audio</span>
+              </button>
+              <div class="invisible group-hover:visible absolute left-1/2 -translate-x-1/2 transition-all top-0">
+                <iframe src="{{ card.podcast }}" width="300" height="380" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+              </div>
+            </div>
+          {% endif %}
+        </div>
+        <div class="bg-gray-200 min-h-1/2">
+          <div class="container mx-auto py-4 h-full">
+            {% autoescape off %}
+              {{ card.description }}
+            {% endautoescape %}
+            <div class="md:flex justify-center mt-4">
+              <div
+                {% if card.external_catalog_link %}
+                  href="{{ card.external_catalog_link }}"
+                {% endif %}
+                class="block w-60 h-60 md:w-80 md:h-60 rounded-bl-9xl mx-auto md:mx-2 bg-cover bg-no-repeat bg-center"
+                style="background-image: url({% if card.featured_image %}{{ card.featured_image.url }}{% else %}{% static 'card/img/featured_image.jpg' %}{% endif %})"
+              >
+                {% if card.featured_text %}
+                  <div class="p-2 bg-black bg-opacity-30">
+                    {% autoescape off %}
+                      {{ card.featured_text }}
+                    {% endautoescape %}
+                  </div>
+                {% endif %}
+              </div>
+              {% if card.qrcode %}
+                <img class="mt-2 md:mt-0 mx-auto md:mx-2 h-60" src="{{ card.qrcode.url }}" alt="">
+              {% endif %}
+            </div>
+          </div>
+        </div>
+        <div class="h-14 bg-gray-200">
+          {% include 'card/powered_by.html' %}
+        </div>
+      </section>
+
+      <section class="p-4 min-h-screen-calc flex items-center" x-show="page == '#services'" x-transition>
+        <div class="container mx-auto flex flex-col md:flex-row md:justify-around items-center">
+          {% for service in services %}
+            <div class="w-full md:w-1/4 p-4 mb-2 md:mb-0 rounded-md border border-gray-200 shadow-md bg-white">
+              {% if service.image %}
+                <img src="{{ service.image.url }}" />
+              {% endif %}
+              <h4 class="text-center my-2">{{ service.name }}</h4>
+              <p class="text-sm">{{ service.description }}</p>
+            </div>
+          {% endfor %}
+        </div>
+        <div class="h-14">
+        </div>
+      </section>
+
+      <section x-show="page == '#booking'" x-transition class="container mx-auto min-h-screen-calc p-2">
+        <div class="h-14"></div>
+        {% url 'book_date' card.pk as book_date_url %}
+        {% include 'components/form.html' with with_labels="true" direction="horizontal" x_data='bookingFormData' method='POST' action=book_date_url %}
+        <div class="h-14 md:h-0"></div>
+      </section>
+
+      <section x-show="page == '#contact'" x-transition class="min-h-screen-calc bg-gray-200">
+        <div class="h-14 md:h-0"></div>
+        <div class="container mx-auto md:flex items-center min-h-screen-calc">
+          <div class="w-full flex justify-center items-center">
+            <div>
+              <div>
+                <span class="text-white bg-primary px-3 py-1 rounded-full">Contactémonos</span>
+              </div>
+              <p><span class="material-icons text-sm">call</span> {{ card.user.phone }}</p>
+              <p><span class="material-icons text-sm">email</span> {{ card.user.email }}</p>
+              <p><span class="material-icons text-sm">place</span> {{ card.user.address }}</p>
+            </div>
+          </div>
+          <div class="w-full">
+            {% url 'contact' card.pk as contact_url %}
+            {% include 'components/form.html' with form=contact_form with_labels="true" method='POST' form_class='bg-transparent shadow-none' action=contact_url %}
+          </div>
+        </div>
+        <div class="h-14 md:h-0">
+          {% include 'card/powered_by.html' %}
+        </div>
+      </section>
+    </main>
+  {% endwith %}
+{% endblock content %}

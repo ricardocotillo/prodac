@@ -1,0 +1,198 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6
+{
+    @apply font-bold;
+}
+
+h1 {
+    @apply text-5xl;
+}
+
+h2 {
+    @apply text-4xl;
+}
+
+h3 {
+    @apply text-3xl;
+}
+
+h4 {
+    @apply text-2xl;
+}
+
+h5 {
+    @apply text-xl;
+}
+
+label {
+    @apply text-gray-700 font-medium;
+}
+
+[type='text'],
+[type='email'],
+[type='url'],
+[type='password'],
+[type='number'],
+[type='date'],
+[type='datetime-local'],
+[type='month'],
+[type='search'],
+[type='tel'],
+[type='time'],
+[type='week'],
+[multiple],
+textarea,
+select {
+    @apply w-full mt-2 rounded-md focus:border-primary text-gray-800 focus:ring-primary;
+}
+.ql-container {
+    @apply h-96;
+}
+select::-ms-expand {
+    display: none;
+}
+input[disabled], input[readonly] {
+    @apply text-gray-400 border-gray-400;
+}
+input[type='checkbox'] {
+    @apply rounded-sm;
+}
+button {
+    @apply px-4 py-2 rounded-md;
+}
+
+.bg-success {
+    @apply bg-green-500;
+}
+.bg-info {
+    @apply bg-blue-500;
+}
+.bg-warning {
+    @apply bg-yellow-500;
+}
+.bg-error {
+    @apply bg-red-500;
+}
+
+.bg-dark {
+    @apply bg-gray-800;
+}
+
+.bg-light {
+    @apply bg-gray-200;
+}
+
+.text-success {
+    @apply text-green-500;
+}
+.text-info {
+    @apply text-blue-500;
+}
+.text-warning {
+    @apply text-yellow-500;
+}
+.text-error {
+    @apply text-red-500;
+}
+
+.text-dark {
+    @apply text-gray-800;
+}
+
+.text-light {
+    @apply text-gray-200;
+}
+
+.loader {
+    border-top-color: transparent;
+    -webkit-animation: spinner 1.5s linear infinite;
+    animation: spinner 1.5s linear infinite;
+}
+
+@-webkit-keyframes spinner {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spinner {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+::-webkit-scrollbar {
+width: 7px;
+height: 7px;
+}
+
+::-webkit-scrollbar-track{
+background: #2D3748;
+}
+
+::-webkit-scrollbar-thumb{
+background: #CBD5E0;
+}
+
+::-webkit-scrollbar-thumb:hover{
+background: #718096;
+}
+
+[x-cloak] {
+    @apply hidden;
+}
+
+.input-wrapper a {
+    @apply block;
+}
+
+.ql-align-center {
+    @apply text-center
+}
+.ql-align-right {
+    @apply text-right
+}
+.ql-align-justify {
+    @apply text-justify
+}
+[value='#8BB53C'] .ql-stroke {
+    stroke: #8BB53C;
+}
+.spinner {
+    animation: rotate 2s linear infinite;
+    z-index: 2;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -25px 0 0 -25px;
+    width: 50px;
+    height: 50px;
+}
+
+@keyframes rotate {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes dash {
+    0% {
+        stroke-dasharray: 1, 150;
+        stroke-dashoffset: 0;
+    }
+    50% {
+        stroke-dasharray: 90, 150;
+        stroke-dashoffset: -35;
+    }
+    100% {
+        stroke-dasharray: 90, 150;
+        stroke-dashoffset: -124;
+    }
+}
+  

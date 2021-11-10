@@ -1,0 +1,7 @@
+<div x-data="messaging()" @messaging:new.window="addMessages" class="fixed left-3 bottom-3 z-50">
+  <template x-for="(alert, i) in alerts">
+    <div class="mt-2">
+      {% include 'components/alerts/message.html' %}
+    </div>
+  </template>
+</div>

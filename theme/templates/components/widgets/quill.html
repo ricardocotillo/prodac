@@ -1,0 +1,8 @@
+<div x-data="quillData({% if widget.value %}'{{ widget.value }}'{% endif %})">
+  <div x-ref="editor" class="quill-editor">
+    {% autoescape off %}
+      {% if widget.value %}{{ widget.value }}{% endif %}
+    {% endautoescape %}
+  </div>
+  <input x-model="value" type="hidden" name="{{ widget.name }}" {% include "django/forms/widgets/attrs.html" %}>
+</div>

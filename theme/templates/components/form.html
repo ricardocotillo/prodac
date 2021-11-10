@@ -1,0 +1,36 @@
+{% load i18n webtags %}
+
+<div class="p-6 bg-white rounded-md shadow-md {{ form_class }}">
+  {% if form_title %}
+    <h2 class="text-lg text-gray-700 font-semibold capitalize">{{ form_title }}</h2>
+  {% endif %}
+  <form action="{{ action }}" method="{{ method }}" {{ x_on }} @submit="onSubmit" x-data="{% if x_data %}{{ x_data }}{% else %}basicFormData(){% endif %}" >
+    {% csrf_token %}
+    <div
+      class="grid grid-cols-1
+      {% if direction and direction == 'horizontal' %}
+        sm:grid-cols-2
+      {% endif %}
+      gap-6 mt-4
+      {{ form_tag_class }}
+      "
+    >
+      {% for f in form %}
+        <div x-ref="{{ f.auto_id }}" class="{% if f.auto_id == hide_id %}hidden{% endif %} input-wrapper">
+          {% if with_labels %}
+            <label class="text-gray-700 font-medium" for="{{ f.auto_id }}">{{ f.label }}</label>
+          {% endif %}
+          {{ f|input }}
+          <small class="block text-xs mb-1">{{ f.help_text }}</small>
+          <small class="block text-error text-xs"></small>
+        </div>
+      {% endfor %}
+    </div>
+    <div class="flex justify-end mt-4">
+      <button type="submit" class="bg-primary text-light flex items-center rounded-md focus:outline-none">
+        {% include 'components/indicators/spinner.html' %}
+        <span class="ml-1">{% if btn_text %}{{ btn_text }}{% else %}{% translate 'Send' %}{% endif %}</span>
+      </button>
+    </div>
+  </form>
+</div>
