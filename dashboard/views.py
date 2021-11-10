@@ -1,33 +1,12 @@
-from io import BytesIO
-from PIL import Image
-import firebase_admin
-from django.views.generic.edit import FormView
-from django.conf import settings
-from firebase_admin import messaging as fcm
-from django.contrib.messages.api import get_messages
-from django.forms import HiddenInput
-from django.core.exceptions import ObjectDoesNotExist
-from django.core.files import File
-from django.core.files.base import ContentFile
-from django.utils.functional import cached_property
 from django.utils.translation import gettext as _
 from django.contrib import messages
-from django.http.response import Http404, JsonResponse
-from django.shortcuts import redirect, render
+from django.shortcuts import render
 from django.urls import reverse
-from django.views.generic import View, UpdateView, ListView
+from django.views.generic import View, UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.core.paginator import Paginator
-from django.forms import modelformset_factory
-from django.templatetags.static import static
-from organizations.views.default import OrganizationCreate, OrganizationDetail
-from organizations.forms import OrganizationUserAddForm
-from organizations.models import Organization, OrganizationUser
-from organizations.views.base import BaseOrganizationUserCreate
-from organizations.views.mixins import AdminRequiredMixin
 from authentication.models import User
 from card.models import Card
-from .widgets import CropperWidget, MultipleDatesWidget, ColorInput, QuillWidget
+from .widgets import CropperWidget, ColorInput, QuillWidget
 from .mixins import JsonResponseMixin
 
 class DashboardView(LoginRequiredMixin, View):

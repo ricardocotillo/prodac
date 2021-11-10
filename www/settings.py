@@ -67,9 +67,7 @@ INSTALLED_APPS = [
     'web',
 
     'django.forms',
-    'organizations',
     'tailwind',
-    'sslserver'
 ]
 
 MIDDLEWARE = [
@@ -112,11 +110,8 @@ WSGI_APPLICATION = 'www.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': env('DB_NAME'),
-        'USER': env('DB_USER'),
-        'PASSWORD': env('DB_PASSWORD'),
-        'HOST': env('DB_HOST'),
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
 
@@ -202,7 +197,6 @@ EMAIL_USE_TLS = True
 
 DEFAULT_FROM_EMAIL = 'info@identicard.space'
 
-INVITATION_BACKEND = 'authentication.backends.AppInvitationBackend'
 
 if not DEBUG:
     GS_BUCKET_NAME = 'identicard-328401.appspot.com'

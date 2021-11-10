@@ -1,21 +1,15 @@
 from django.template.loader import render_to_string
-from dashboard.models import AvailableSlots
-from django.utils.timezone import datetime, timedelta
 from django.utils.translation import gettext as _
-from typing import Any, Dict
-from django.http.response import JsonResponse
-from django.shortcuts import redirect, render
-from django.views.generic import DetailView, CreateView
+from django.shortcuts import render
+from django.views.generic import DetailView
 from django.views import View
 from django.urls import reverse
 from django.contrib import messages
 from django.core.mail import send_mail
 
-from .models import Card, Landing
+from .models import Card
 from .forms import ContactForm
 
-from dashboard.models import Appointment
-from dashboard.forms import AppointmentCreateForm
 from dashboard.mixins import JsonResponseMixin
 
 def home(req):
@@ -27,7 +21,7 @@ class CardDetailView(DetailView):
 
     template_name = 'card/card_detail.html'
 
-    def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
+    def get_context_data(self, **kwargs):
         ctx = super().get_context_data(**kwargs)
         ctx['services'] = self.object.services.filter(active=True)
         contact_form = ContactForm()
