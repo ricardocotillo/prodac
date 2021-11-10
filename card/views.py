@@ -23,10 +23,9 @@ class CardDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         ctx = super().get_context_data(**kwargs)
-        ctx['services'] = self.object.services.filter(active=True)
         contact_form = ContactForm()
         ctx['contact_form'] = contact_form
-        ctx['card_url'] = self.request.build_absolute_uri(reverse('card', kwargs={'slug': self.object.slug})) 
+        ctx['card_url'] = self.request.build_absolute_uri(reverse('card', kwargs={'pk': self.object.pk})) 
         return ctx
 
 class ProcessContact(JsonResponseMixin, View):

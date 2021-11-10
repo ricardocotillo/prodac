@@ -1,15 +1,8 @@
 {% extends 'card/base.html' %}
 {% load static %}
 
-{% block css %}
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-  <link rel="manifest" href="{% url 'manifest' card.pk %}">
-{% endblock css %}
-
 {% block js %}
   <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-  {% url 'card_available_slots' card.pk as slots_url %}
-  {{ slots_url|json_script:'slots-url' }}
   {{ card.pk|json_script:'card-pk' }}
   <script defer src="{% static 'card/js/card.js' %}"></script>
 {% endblock js %}
@@ -21,10 +14,6 @@
         <button data-text="{{ card_url }}" class="bg-primary text-white rounded-full mx-1 px-2 py-1 text-sm inline-flex items-center copy-to-clipboard">
           <span class="material-icons text-sm md:mr-1">link</span>
           <span class="hidden md:inline">Link</span>
-        </button>
-        <button id="add-btn" class="bg-primary text-white rounded-full mx-1 px-2 py-1 text-sm inline-flex items-center">
-          <span class="material-icons text-sm md:mr-1">phone_iphone</span>
-          <span class="hidden md:inline">Agregar</span>
         </button>
         <a href="whatsapp://send?text={{ request.scheme }}://{{ request.get_host }}{{ request.get_full_path }}">
           <button class="bg-primary text-white rounded-full mx-1 px-2 py-1 text-sm inline-flex items-center">
@@ -42,17 +31,11 @@
             bg-primary py-2 md:rounded-md h-16 md:h-auto"
     >
       <a href="#home" @click="onClick" class="material-icons text-white text-4xl">home</a>
-      {% if card.permission.allow_services %}
-        <a href="#services" @click="onClick" class="material-icons text-white text-4xl">work</a>
-      {% endif %}
-      {% if card.permission.allow_booking %}
-        <a href="#booking" @click="onClick" class="material-icons text-white text-4xl">event</a>
-      {% endif %}
       <a href="#contact" @click="onClick" class="material-icons text-white text-4xl">email</a>
     </div>
     <div class="fixed right-3 top-1/2 -translate-y-1/2 z-10">
-      {% if card.user.facebook %}
-        <a href="{{ card.user.facebook }}">
+      {% if card.facebook %}
+        <a href="{{ card.facebook }}">
           <svg
             class="w-7"
             width="6.8791666mm"
@@ -114,63 +97,6 @@
           </svg>
         </a>
       {% endif %}
-      {% if card.user.instagram %}
-        <a href="{{ card.user.instagram }}" class="bg-primary rounded-full p-1 w-7 h-7 flex justify-center items-center mt-1">
-          <img class="w-4" src="{% static 'icons/instagram.svg' %}" />
-        </a>
-      {% endif %}
-      {% if card.user.twitter %}
-        <a href="{{ card.user.twitter }}" class="bg-primary rounded-full p-1 w-7 h-7 flex justify-center items-center mt-1">
-          <img class="w-4" src="{% static 'icons/twitter.svg' %}" />
-        </a>
-      {% endif %}
-      {% if card.user.linkedin %}
-        <a href="{{ card.user.linkedin }}">
-          <svg
-            width="6.3499999mm"
-            height="6.3499999mm"
-            viewBox="0 0 6.3499999 6.3499999"
-            version="1.1"
-            id="svg5"
-            xmlns="http://www.w3.org/2000/svg"
-            xmlns:svg="http://www.w3.org/2000/svg"
-            class="w-7 mt-1 fill-current text-primary"
-          >
-            <defs
-              id="defs2" />
-            <g
-              id="layer1"
-              transform="translate(-28.903883,-129.10534)">
-              <rect
-                style="opacity:1;fill:#ffffff;stroke-width:0.264583"
-                id="rect59"
-                width="4.9109526"
-                height="5.2713895"
-                x="29.736044"
-                y="129.66718" />
-              <path
-                d="M 33.930967,129.10534 H 30.2268 c -0.730514,0 -1.322917,0.5924 -1.322917,1.32292 v 3.70416 c 0,0.73052 0.592403,1.32292 1.322917,1.32292 h 3.704167 c 0.730779,0 1.322916,-0.5924 1.322916,-1.32292 v -3.70416 c 0,-0.73052 -0.592137,-1.32292 -1.322916,-1.32292 z m -2.910417,5.02708 H 30.2268 v -2.91041 h 0.79375 z m -0.396875,-3.24591 c -0.255587,0 -0.463021,-0.20902 -0.463021,-0.46672 0,-0.2577 0.207434,-0.46673 0.463021,-0.46673 0.255588,0 0.463021,0.20903 0.463021,0.46673 0,0.2577 -0.207169,0.46672 -0.463021,0.46672 z m 3.571875,3.24591 H 33.4018 v -1.48272 c 0,-0.89112 -1.058333,-0.82365 -1.058333,0 v 1.48272 h -0.79375 v -2.91041 h 0.79375 v 0.46699 c 0.369358,-0.68422 1.852083,-0.73475 1.852083,0.6551 z"
-                id="path9"
-                style="stroke-width:0.264583" />
-            </g>
-          </svg>
-        </a>
-      {% endif %}
-      {% if card.user.telegram %}
-        <a href="{{ card.user.telegram }}" class="bg-primary rounded-full p-1 w-7 h-7 flex justify-center items-center mt-1">
-          <img class="w-4" src="{% static 'icons/telegram.svg' %}" />
-        </a>
-      {% endif %}
-      {% if card.user.youtube %}
-        <a href="{{ card.user.youtube }}" class="bg-primary rounded-full p-1 w-7 h-7 flex justify-center items-center mt-1">
-          <img class="w-4" src="{% static 'icons/youtube.svg' %}" />
-        </a>
-      {% endif %}
-      {% if card.user.web %}
-        <a href="{{ card.user.web }}" class="bg-primary rounded-full p-1 w-7 h-7 flex justify-center items-center mt-1">
-          <img class="w-4" src="{% static 'icons/worldwide.svg' %}" />
-        </a>
-      {% endif %}
     </div>
     <main
       id="main-wrapper"
@@ -189,7 +115,7 @@
               {% endif %}
             </div>
             <div class="md:mx-10 text-center">
-              {% if user.phone %}
+              {% if card.phone %}
                 <a
                   href="tel:{{ user.phone }}"
                   class="font-semibold text-white text-base mr-1 material-icons bg-primary w-8 h-8 inline-flex justify-center items-center rounded-full">phone</a>
@@ -199,14 +125,13 @@
                   href="mailto:{{ user.email }}"
                   class="font-semibold text-white text-base mr-1 material-icons bg-primary w-8 h-8 inline-flex justify-center items-center rounded-full">email</a>
               {% endif %}
-              {% if card.user.whatsapp %}
+              {% if card.whatsapp %}
                 <a
                   href="https://wa.me/51{{ card.user.whatsapp }}" class="bg-primary rounded-full p-1 w-8 h-8 inline-flex justify-center items-center mt-1">
                   <img class="w-4" src="{% static 'icons/whatsapp.svg' %}" />
                 </a>
               {% endif %}
-              <h6 class="text-white uppercase">{{ user.first_name }} {{ user.last_name }}</h6>
-              <h6 class="text-white uppercase">{{ user.title }}</h6>
+              <h6 class="text-white uppercase">{{ card.name }}</h6>
               {% if card.video %}
                 <a href="#" class="flex justify-center mt-4">
                   <button id="open-video" class="bg-gray-700 text-white flex items-center text-xs">
@@ -237,7 +162,6 @@
           </div>
         </div>
         <div class="h-14 bg-gray-200">
-          {% include 'card/powered_by.html' %}
         </div>
       </section>
 
@@ -283,7 +207,6 @@
           </div>
         </div>
         <div class="h-14 md:h-0">
-          {% include 'card/powered_by.html' %}
         </div>
       </section>
     </main>
