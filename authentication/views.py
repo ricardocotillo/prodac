@@ -4,10 +4,10 @@ from django.views.generic import CreateView
 from django.contrib.auth.views import LoginView
 from django.core.mail import send_mail
 from django.utils.translation import gettext as _
-from .models import Permission, User
+from .models import User
 from .forms import RegisterForm
 
-from card.models import Card, Template
+from card.models import Card
 
 class RegisterView(CreateView):
     model = User
@@ -38,8 +38,5 @@ class SigninView(LoginView):
         res = super().form_valid(form)
         user = form.get_user()
         if not getattr(user, 'card', None):
-            perm = Permission.objects.filter(default=True).first()
-            Card.objects.create(user=user, permission=perm)
-        if not user.card.slug:
-            user.card.save()
+            Card.objects.create(user=user)
         return res

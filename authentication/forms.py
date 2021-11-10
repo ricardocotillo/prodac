@@ -1,5 +1,5 @@
 from django.contrib.auth.forms import UserCreationForm
-from .models import User, Permission
+from .models import User
 from card.models import Card
 
 
@@ -11,6 +11,5 @@ class RegisterForm(UserCreationForm):
 
     def save(self, commit=True):
         user = super().save(commit=commit)
-        perm = Permission.objects.filter(default=True).first()
-        Card.objects.create(user=user, permission=perm)
+        Card.objects.create(user=user)
         return user
