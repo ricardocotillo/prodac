@@ -6,7 +6,7 @@ from django.views.generic import View, UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from authentication.models import User
 from card.models import Card
-from .widgets import CropperWidget, ColorInput, QuillWidget
+from .widgets import QuillWidget
 from .mixins import JsonResponseMixin
 
 class DashboardView(LoginRequiredMixin, View):
@@ -41,9 +41,12 @@ class UpdateCardView(LoginRequiredMixin, JsonResponseMixin, UpdateView):
 
     model = Card
     fields = [
-        'background',
         'logo',
+        'background',
         'description',
+        'phone',
+        'whatsapp',
+        'facebook',
     ]
     
     template_name = 'dashboard/card.html'
@@ -57,9 +60,6 @@ class UpdateCardView(LoginRequiredMixin, JsonResponseMixin, UpdateView):
     def get_form(self, form_class=None):
         form = super().get_form(form_class=form_class)
         form.fields['description'].widget = QuillWidget()
-        form.fields['color'].widget = ColorInput()
-        form.fields['icon'].widget = CropperWidget(attrs={'data-width': 512, 'data-height': 512})
-        form.fields['icon_small'].widget = CropperWidget(attrs={'data-width': 192, 'data-height': 192})
         return form
     
     def form_valid(self, form):

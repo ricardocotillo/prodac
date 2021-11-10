@@ -12,21 +12,7 @@
   {{ card_url|json_script:'cardURL' }}
 {% endblock js %}
 {% block content %}
-  <h3 class="text-center">{% translate 'You can update your Identicard here' %}</h3>
-  <div id="svg-generator" class="flex justify-center mt-2">
-    {% if card.qrcode %}
-        <img src="{{ card.qrcode.url }}" class="w-64 h-64" />
-    {% else %}
-      <div x-data="qrData()" x-ref="wrapper" class="w-64 h-64 flex justify-center items-center">
-        <template x-if="!loading && !generated">
-          <button @click="onClick" class="bg-info text-white">{% translate 'Generate your own QR' %}</button>
-        </template>
-        <template x-if="loading && !generated">
-          {% include 'components/indicators/spinner.html' with border_color='border-indigo-500' %}
-        </template>
-      </div>
-    {% endif %}
-  </div>
+  <h3 class="text-center">Actualiza tu FerreProdac</h3>
   <div class="flex justify-center mt-4">
     {% include 'components/form.html' with direction='horizontal' with_labels='true' method='POST' form_tag_class='md:grid-cols-3' x_data="updateCard()" x_on='@qrcode:generated.window="storeQR"' hide_id='id_qrcode' %}
   </div>

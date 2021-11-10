@@ -14,6 +14,7 @@ class Card(models.Model):
     description = models.TextField(null=True, blank=True, verbose_name=_('description'))
     phone = models.CharField(max_length=15, blank=True, null=True, verbose_name=_('phone'))
     whatsapp = models.CharField(max_length=15, blank=True, null=True)
+    facebook = models.URLField(max_length=200, blank=True, null=True)
     address = models.CharField(max_length=250, null=True, blank=True, verbose_name=_('address'))
 
     def __str__(self) -> str:
