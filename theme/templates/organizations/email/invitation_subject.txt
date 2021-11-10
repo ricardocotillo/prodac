@@ -1,2 +1,0 @@
-{% load i18n %}
-{% spaceless %}{% translate "You've been invited!" %}{% endspaceless %}

@@ -1,7 +1,0 @@
-{% extends 'authentication/base.html' %}
-{% load static i18n %}}
-{% block content %}
-  <img src="{% static 'card/img/logo.svg' %}" class="w-80 mx-auto" alt="">
-  <h2 class="text-center my-8">{% translate "Complete your registration" %}</h2>
-  {% include 'components/form.html' with with_labels=True x_data="{ loading: false, onSubmit(){} }" method='POST' %}
-{% endblock content %}

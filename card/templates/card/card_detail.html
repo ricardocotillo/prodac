@@ -98,26 +98,28 @@
         </a>
       {% endif %}
     </div>
-    <main
-      id="main-wrapper"
-      class="h-screen-calc-tray md:h-screen-calc w-screen overflow-y-auto bg-no-repeat bg-left-top bg-cover"
-      x-data="pageData"
-      style="background-image: url({% if card.background %}{{ card.background.url }}{% else %}{% static 'card/img/wall-1.webp' %}{% endif %})"
-    >
+    <main id="main-wrapper" class="h-screen-calc-tray md:h-screen-calc w-screen overflow-y-auto" x-data="pageData">
       <section x-show="page == '#home'" x-transition id="home" class="h-screen-calc">
-        <div
-          class="px-5 flex flex-col items-center justify-center h-1/2 my-16"
-        >
+        <div class="splide">
+          <div class="splide__track">
+            <ul class="splide__list">
+              <li class="splide__slide">Slide 01</li>
+              <li class="splide__slide">Slide 02</li>
+              <li class="splide__slide">Slide 03</li>
+            </ul>
+          </div>
+        </div>
+        {% comment %} <div class="px-5 flex flex-col items-center justify-center h-1/2 my-16">
           <div class="flex flex-col md:flex-row items-center backdrop-blur-lg rounded-md md:rounded-full px-4 py-2">
             <div>
-              {% if user.image %}
-                <img class="w-24 h-24 md:w-40 md:h-40 rounded-full mx-auto" src="{{ user.image.url }}" alt="">
+              {% if card.logo %}
+                <img class="w-24 h-24 md:w-40 md:h-40 rounded-full mx-auto" src="{{ user.logo.url }}" alt="">
               {% endif %}
             </div>
             <div class="md:mx-10 text-center">
               {% if card.phone %}
                 <a
-                  href="tel:{{ user.phone }}"
+                  href="tel:{{ card.phone }}"
                   class="font-semibold text-white text-base mr-1 material-icons bg-primary w-8 h-8 inline-flex justify-center items-center rounded-full">phone</a>
               {% endif %}
               {% if user.email %}
@@ -127,33 +129,14 @@
               {% endif %}
               {% if card.whatsapp %}
                 <a
-                  href="https://wa.me/51{{ card.user.whatsapp }}" class="bg-primary rounded-full p-1 w-8 h-8 inline-flex justify-center items-center mt-1">
+                  href="https://wa.me/51{{ card.whatsapp }}" class="bg-primary rounded-full p-1 w-8 h-8 inline-flex justify-center items-center mt-1">
                   <img class="w-4" src="{% static 'icons/whatsapp.svg' %}" />
                 </a>
               {% endif %}
               <h6 class="text-white uppercase">{{ card.name }}</h6>
-              {% if card.video %}
-                <a href="#" class="flex justify-center mt-4">
-                  <button id="open-video" class="bg-gray-700 text-white flex items-center text-xs">
-                    <span class="material-icons mr-1">ondemand_video</span>
-                    Abre el video
-                  </button>
-                </a>
-              {% endif %}
             </div>
           </div>
-          {% if card.podcast and card.permission.allow_podcast %}
-            <div class="group relative">
-              <button class="text-center bg-primary p-2 mt-2 rounded-md text-white text-lg flex items-center">
-                <span id="audio-btn" class="material-icons text-white mr-2">play_circle</span>
-                <span>Audio</span>
-              </button>
-              <div class="invisible group-hover:visible absolute left-1/2 -translate-x-1/2 transition-all top-0">
-                <iframe src="{{ card.podcast }}" width="300" height="380" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
-              </div>
-            </div>
-          {% endif %}
-        </div>
+        </div> {% endcomment %}
         <div class="bg-gray-200 min-h-1/2">
           <div class="container mx-auto py-4 h-full">
             {% autoescape off %}
