@@ -1,10 +1,39 @@
-<?xml version="1.0" encoding="iso-8859-1"?>
-<!-- Generator: Adobe Illustrator 18.1.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-<svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 26 26" style="enable-background:new 0 0 26 26;" xml:space="preserve">
-<g>
-	<path style="fill:#8BB53C;" d="M21.125,0H4.875C2.182,0,0,2.182,0,4.875v16.25C0,23.818,2.182,26,4.875,26h16.25
-		C23.818,26,26,23.818,26,21.125V4.875C26,2.182,23.818,0,21.125,0z M20.464,14.002h-2.433v9.004h-4.063v-9.004h-1.576v-3.033h1.576
-		V9.037C13.969,6.504,15.021,5,18.006,5h3.025v3.022h-1.757c-1.162,0-1.238,0.433-1.238,1.243l-0.005,1.703h2.764L20.464,14.002z"/>
-</g>
+<svg
+  width="6.8791666mm"
+  height="6.8791666mm"
+  viewBox="0 0 6.8791666 6.8791666"
+  version="1.1"
+  id="svg1243"
+  fill="rgba(37, 99, 235, 1)"
+  inkscape:version="1.1 (c68e22c387, 2021-05-23)"
+  sodipodi:docname="facebook.svg"
+  xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+  xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+  xmlns="http://www.w3.org/2000/svg"
+  xmlns:svg="http://www.w3.org/2000/svg"
+>
+  <g
+    inkscape:label="Layer 1"
+    inkscape:groupmode="layer"
+    id="layer1"
+    transform="translate(-48.102892,-156.23396)"
+  >
+    <rect
+      style="fill:#ffffff;stroke-width:0.264583"
+      id="rect1280"
+      width="4.3252425"
+      height="5.6768813"
+      x="49.920509"
+      y="156.97026"
+    />
+    <g
+      id="g1249"
+      transform="matrix(0.26458333,0,0,0.26458333,48.102892,156.23396)"
+    >
+      <path
+        d="M 21.125,0 H 4.875 C 2.182,0 0,2.182 0,4.875 v 16.25 C 0,23.818 2.182,26 4.875,26 h 16.25 C 23.818,26 26,23.818 26,21.125 V 4.875 C 26,2.182 23.818,0 21.125,0 Z m -0.661,14.002 h -2.433 v 9.004 h -4.063 v -9.004 h -1.576 v -3.033 h 1.576 V 9.037 C 13.969,6.504 15.021,5 18.006,5 h 3.025 v 3.022 h -1.757 c -1.162,0 -1.238,0.433 -1.238,1.243 l -0.005,1.703 h 2.764 z"
+        id="path1247"
+      />
+    </g>
+  </g>
 </svg>

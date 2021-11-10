@@ -56,11 +56,6 @@ class UpdateCardView(LoginRequiredMixin, JsonResponseMixin, UpdateView):
 
     def get_success_url(self):
         return reverse('config')
-
-    def get_form(self, form_class=None):
-        form = super().get_form(form_class=form_class)
-        form.fields['description'].widget = QuillWidget()
-        return form
     
     def form_valid(self, form):
         return super().form_valid(form)
