@@ -9,15 +9,13 @@
   </div>
   
   <div class="flex items-center">
-    {% include 'components/language_selector.html' %}
-    {% include 'components/language_selector.html' with mobile='true' %}
     <div x-data="{ dropdownOpen: false }" @profileimage:update.window="$refs.profileImage.src = $event.detail.src"  class="relative ml-4">
       <div @click="dropdownOpen = ! dropdownOpen" class="relative block h-8 w-8 rounded-full overflow-hidden shadow focus:outline-none cursor-pointer">
         <img x-ref="profileImage" class="h-full w-full object-cover" src="{% if user.image %}{{ user.image.url }}{% else %}{% static 'dashboard/img/profile.png' %}{% endif %}" alt="Your avatar">
       </div>
       <div x-show="dropdownOpen" @click="dropdownOpen = false" class="fixed inset-0 h-full w-full z-10"></div>
       <div x-cloak x-show="dropdownOpen" class="absolute right-0 mt-2 w-48 bg-white rounded-md overflow-hidden shadow-xl z-10">
-        <a href="{% url 'card' request.user.card.slug %}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-primary hover:text-white">{% translate 'My Identicard' %}</a>
+        <a href="{% url 'card' request.user.card.pk %}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-primary hover:text-white">{% translate 'My Identicard' %}</a>
         <a href="{% url 'logout' %}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-primary hover:text-white">{% translate "Logout" %}</a>
       </div>
     </div>

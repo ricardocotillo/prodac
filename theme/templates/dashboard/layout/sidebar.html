@@ -11,42 +11,11 @@
   <nav class="mt-10">
     <a href="{% url 'dashboard' %}" class="flex items-center mt-4 py-2 px-6 {% if request.resolver_match.view_name == 'dashboard' %}bg-gray-700 bg-opacity-25 text-gray-100{% else %}text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100{% endif %}">
       <span class="material-icons">dashboard</span>
-      <span class="mx-3">Dashboard</span>
+      <span class="mx-3">Información</span>
     </a>
-
-    <a href="{% url 'update' %}" class="flex items-center mt-4 py-2 px-6 {% if request.resolver_match.view_name == 'update' %}bg-gray-700 bg-opacity-25 text-gray-100{% else %}text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100{% endif %}">
-      <span class="material-icons">face</span>
-      <span class="mx-3">{% translate 'Update info' %}</span>
-    </a>
-
     <a href="{% url 'config' %}" class="flex items-center mt-4 py-2 px-6 {% if request.resolver_match.view_name == 'config' %}bg-gray-700 bg-opacity-25 text-gray-100{% else %}text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100{% endif %}">
       <span class="material-icons">settings</span>
-      <span class="mx-3">{% translate 'My Identicard' %}</span>
+      <span class="mx-3">FerreProdac</span>
     </a>
-    {% with request.user.card.permission as permission %}
-      {% if permission and permission.allow_booking %}
-        <a href="{% url 'booking' %}" class="flex items-center mt-4 py-2 px-6 {% if request.resolver_match.view_name == 'booking' %}bg-gray-700 bg-opacity-25 text-gray-100{% else %}text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100{% endif %}">
-          <span class="material-icons">event</span>
-          <span class="mx-3">{% translate 'Booking' %}</span>
-        </a>
-      {% endif %}
-    
-      <a href="{% url 'organization' %}" class="flex items-center mt-4 py-2 px-6 {% if request.resolver_match.view_name == 'organization' %}bg-gray-700 bg-opacity-25 text-gray-100{% else %}text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100{% endif %}">
-        <span class="material-icons">corporate_fare</span>
-        <span class="mx-3">{% translate 'My organization' %}</span>
-      </a>
-      {% if permission and permission.allow_notifications %}
-        <a href="{% url 'notifications' %}" class="flex items-center mt-4 py-2 px-6 {% if request.resolver_match.view_name == 'notifications' %}bg-gray-700 bg-opacity-25 text-gray-100{% else %}text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100{% endif %}">
-          <span class="material-icons">ad_units</span>
-          <span class="mx-3">{% translate 'Send notifications' %}</span>
-        </a>
-      {% endif %}
-      {% if permission and permission.allow_landing %}
-        <a href="{% url 'landing_update' %}" class="flex items-center mt-4 py-2 px-6 {% if request.resolver_match.view_name == 'landing_update' %}bg-gray-700 bg-opacity-25 text-gray-100{% else %}text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100{% endif %}">
-          <span class="material-icons">web</span>
-          <span class="mx-3">{% translate 'Landing page' %}</span>
-        </a>
-      {% endif %}
-    {% endwith %}
   </nav>
 </div>

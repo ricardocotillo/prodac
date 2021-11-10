@@ -29,14 +29,12 @@
 			<div class="container mx-auto flex flex-col md:flex-row items-center md:items-end">
         <div class="flex justify-between w-full md:w-auto items-center px-2">
           <a href="{% url 'home' %}"><img src="{% static 'card/img/logo.svg' %}" class="w-48" /></a>
-          {% include 'components/language_selector.html' with mobile='True' %}
         </div>
         <ul class="flex justify-around w-full font-bold text-primary">
           <li><a href="{% url 'home' %}">{% translate 'Home' %}</a></li>
           <li><a href="{% url 'about' %}">{% translate 'About Us' %}</a></li>
           <li><a href="{% url 'contact' %}">{% translate 'Contact' %}</a></li>
         </ul>
-        {% include 'components/language_selector.html' %}
       </div>
 		</nav>
 		<main>

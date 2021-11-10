@@ -14,28 +14,6 @@
   <script defer src="{% static 'card/js/card.js' %}"></script>
 {% endblock js %}
 {% block content %}
-  <style type="text/css">
-    .text-primary {
-      color: {{ card.color }};
-    }
-    .hover\:text-primary:hover {
-      color: {{ card.color }};
-    }
-    .focus\:text-primary:focus {
-      color: {{ card.color }};
-    }
-    .bg-primary {
-      background-color: {{ card.color }};
-    }
-    .border-primary {
-      border-color: {{ card.color }};
-    }
-    .spinner .path {
-        stroke: {{ card.color }};
-        stroke-linecap: round;
-        animation: dash 1.5s ease-in-out infinite;
-    }
-  </style>
   {% with card.user as user %}
     <nav class="container mx-auto flex justify-between items-center h-16">
       <img class="h-8 md:h-10" src="{% if card.logo %}{{ card.logo.url }}{% else %}{% static 'card/img/logo.svg' %}{% endif %}" />
@@ -256,26 +234,6 @@
             {% autoescape off %}
               {{ card.description }}
             {% endautoescape %}
-            <div class="md:flex justify-center mt-4">
-              <div
-                {% if card.external_catalog_link %}
-                  href="{{ card.external_catalog_link }}"
-                {% endif %}
-                class="block w-60 h-60 md:w-80 md:h-60 rounded-bl-9xl mx-auto md:mx-2 bg-cover bg-no-repeat bg-center"
-                style="background-image: url({% if card.featured_image %}{{ card.featured_image.url }}{% else %}{% static 'card/img/featured_image.jpg' %}{% endif %})"
-              >
-                {% if card.featured_text %}
-                  <div class="p-2 bg-black bg-opacity-30">
-                    {% autoescape off %}
-                      {{ card.featured_text }}
-                    {% endautoescape %}
-                  </div>
-                {% endif %}
-              </div>
-              {% if card.qrcode %}
-                <img class="mt-2 md:mt-0 mx-auto md:mx-2 h-60" src="{{ card.qrcode.url }}" alt="">
-              {% endif %}
-            </div>
           </div>
         </div>
         <div class="h-14 bg-gray-200">

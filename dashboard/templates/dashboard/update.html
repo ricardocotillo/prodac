@@ -10,16 +10,6 @@
 {% endblock js %}
 
 {% block content %}
-  <div x-data="profileImageData" class="relative cursor-pointer w-40 h-40 mx-auto group" @click="onClick" @image:cropped.window="croppedImg">
-    <img x-ref="mainProfileImage" class="object-cover object-center rounded-full" src="{% if user.image %}{{ user.image.url }}{% else %}{% static 'dashboard/img/profile.png' %}{% endif %}" alt="">
-    <template x-if="!loading">
-      <span class="material-icons hidden text-gray-300 group-hover:block absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">photo_camera</span>
-    </template>
-    {% include 'components/indicators/spinner.html' %}
-    <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}" x-ref="token" />
-    <input type="hidden" name="save_url" value="{% url 'update_image' %}" x-ref="saveURL" />
-    <input @change="onChange" x-ref="imgInput" type="file" class="hidden">
-  </div>
   <div class="mt-4">
     {% url 'update' as update_url %}
     {% include 'components/form.html' with direction='horizontal' method='POST' action=update_url %}

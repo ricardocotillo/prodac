@@ -57,7 +57,6 @@ class UpdateCardView(LoginRequiredMixin, JsonResponseMixin, UpdateView):
     def get_form(self, form_class=None):
         form = super().get_form(form_class=form_class)
         form.fields['description'].widget = QuillWidget()
-        form.fields['featured_text'].widget = QuillWidget()
         form.fields['color'].widget = ColorInput()
         form.fields['icon'].widget = CropperWidget(attrs={'data-width': 512, 'data-height': 512})
         form.fields['icon_small'].widget = CropperWidget(attrs={'data-width': 192, 'data-height': 192})
