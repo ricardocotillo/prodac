@@ -1,13 +1,17 @@
+from django.core.mail import send_mail, mail_admins
 from django.utils.translation import gettext as _
 from django.contrib import messages
 from django.shortcuts import render
 from django.urls import reverse
-from django.views.generic import View, UpdateView
+from django.views.generic import View, UpdateView, FormView
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic.edit import FormView
+from django.template.loader import render_to_string
 from authentication.models import User
 from card.models import Card
 from .widgets import CropperWidget
 from .mixins import JsonResponseMixin
+from .forms import OrderForm
 
 class DashboardView(LoginRequiredMixin, View):
     login_url = '/authentication/login/'
@@ -72,3 +76,23 @@ class UpdateCardView(LoginRequiredMixin, JsonResponseMixin, UpdateView):
         form = super().get_form(form_class=form_class)
         form.fields.get('logo').widget = CropperWidget()
         return form
+
+class OrderView(LoginRequiredMixin, JsonResponseMixin, FormView):
+    template_name = 'dashboard/order.html'
+
+    form_class = OrderForm
+
+    def form_valid(self, form = None):
+        html_message = render_to_string('email/order.html', {'order': form.cleaned_data})
+        send_mail(
+            subject='Tu pedido ha sido enviado con éxito',
+            message='Prodac ha recibido tu pedido y se contactará contigo a la brevedad.',
+            from_email=None,
+            recipient_list=[form.cleaned_data.get('email')]
+        )
+        mail_admins(
+            subject='Nuevo pedido',
+            message='',
+            html_message=html_message,
+        )
+        return super().form_valid(form)
