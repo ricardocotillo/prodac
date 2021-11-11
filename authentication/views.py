@@ -24,7 +24,7 @@ class RegisterView(CreateView):
         url = self.request.build_absolute_uri(reverse('dashboard'))
         html_message = render_to_string('email/register.html', {'user': user, 'url': url})
         send_mail(
-            subject=_('Welcome to Identicard') + ', ' + user.first_name + ' ' + user.last_name,
+            subject='Bienvenido a Ferreprodac, ' + user.first_name + ' ' + user.last_name,
             message='',
             from_email=None,
             html_message=html_message,

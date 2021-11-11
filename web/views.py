@@ -14,7 +14,7 @@ class Contactview(FormView):
             subject=_('Your message has been received'),
             message=_('I have received your message and I will contact you as soon as possible.'),
             from_email=None,
-            recipient_list=[form.cleaned_data['email']]
+            recipient_list=[form.cleaned_data.get('email')]
         )
         mail_admins(
             subject='Contacto',

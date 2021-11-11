@@ -70,7 +70,7 @@ function cropIconData() {
     },
     onSave() {
       this.loading = true
-      const croppedCanvas = this.cropper.getCroppedCanvas(this.width, this.height)
+      const croppedCanvas = this.cropper.getCroppedCanvas({width: this.width, height: this.height, fillColor: '#ffffff'})
       const dataURL = croppedCanvas.toDataURL('image/jpeg')
       fire(`image:cropped:${this.width}:${this.height}`, {dataURL})
       this.loading = false
@@ -88,15 +88,10 @@ function cropIconData() {
 function updateCard() {
   return {
     ...basicFormData(),
-    blob: null,
-    icon: null,
-    iconSmall: null,
+    logo: null,
     init() {
-      window.addEventListener(`icon:update:512:512`, e => {
-        this.icon = e.detail.dataURL
-      })
-      window.addEventListener(`icon:update:192:192`, e => {
-        this.iconSmall = e.detail.dataURL
+      window.addEventListener('logo:update', e => {
+        this.logo = e.detail.dataURL
       })
     },
     async toBlob(dataURL) {
@@ -133,16 +128,9 @@ function updateCard() {
       this.loading = true
       const form = e.target
       const formData = new FormData(form)
-      if (this.icon) {
-        const iconBlob = await this.toBlob(this.icon)
-        formData.set('icon', iconBlob, 'icon.jpg')
-      }
-      if (this.iconSmall) {
-        const iconSmallBlob = await this.toBlob(this.iconSmall)
-        formData.set('icon_small', iconSmallBlob, 'iconsmall.jpg')
-      }
-      if (this.blob) {
-        formData.append('qrcode', this.blob, 'qrcode.svg')
+      if (this.logo) {
+        const logoBlob = await this.toBlob(this.logo)
+        formData.set('logo', logoBlob, 'logo.jpg')
       }
       const url = window.location.pathname
       fetch(url, {

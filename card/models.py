@@ -6,6 +6,7 @@ from authentication.utils import make_file_path
 class Card(models.Model):
     user = models.OneToOneField('authentication.User', on_delete=models.CASCADE, related_name='card')
     name = models.CharField(max_length=250, default='FerreProdac')
+    email = models.EmailField()
     logo = models.ImageField(upload_to=make_file_path, null=True, blank=True)
     background = models.ImageField(upload_to=make_file_path, null=True, blank=True, help_text=_('Suggested size: 1920x1080 px'))
     description = models.TextField(null=True, blank=True, verbose_name=_('description'))

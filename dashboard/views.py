@@ -41,6 +41,8 @@ class UpdateCardView(LoginRequiredMixin, JsonResponseMixin, UpdateView):
 
     model = Card
     fields = [
+        'name',
+        'email',
         'logo',
         'background',
         'description',
@@ -57,9 +59,6 @@ class UpdateCardView(LoginRequiredMixin, JsonResponseMixin, UpdateView):
 
     def get_success_url(self):
         return reverse('config')
-    
-    def form_valid(self, form):
-        return super().form_valid(form)
 
     def get_object(self):
         return self.request.user.card

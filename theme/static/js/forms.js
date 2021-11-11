@@ -74,20 +74,20 @@ function quillData(value=null) {
 function cropperWidgetData(value=null) {
   return {
     ...fileWidgetData(value),
-    width: null,
-    height: null,
+    width: 500,
+    height: 500,
     initialValue: value,
     init() {
       this.width = Number(this.$refs.imageInput.dataset.width)
       this.height = Number(this.$refs.imageInput.dataset.height)
       window.addEventListener(`image:cropped:${this.width}:${this.height}`, e => {
         this.src = e.detail.dataURL
-        fire(`icon:update:${this.width}:${this.height}`, {dataURL: this.src})
+        fire('logo:update', {dataURL: this.src})
       })
       window.addEventListener(`image:cancel:${this.width}:${this.height}`, () => {
         this.$refs.imageInput.value = ''
         this.src = this.initialValue
-        fire(`icon:update:${this.width}:${this.height}`, {dataURL: null})
+        fire('logo:update', {dataURL: null})
       })
     },
     changeImage(e) {

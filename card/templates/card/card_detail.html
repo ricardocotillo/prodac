@@ -62,7 +62,13 @@
           {{ card.description }}
         </p>
         <div class="flex w-3/4 mx-auto mt-4 justify-between">
-          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3902.839169311068!2d-77.12840208459409!3d-11.98562824403094!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9105cdb805a6c3cb%3A0xf96e286e99869177!2sPRODAC!5e0!3m2!1sen!2spe!4v1636586654915!5m2!1sen!2spe" width="600" height="250" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+          {% if card.google_map %}
+            <div class="h-72">
+              {% autoescape off %}
+                {{ card.google_map }}
+              {% endautoescape %}
+            </div>
+          {% endif %}
           <div class="flex flex-col justify-around">
             <div class="flex items-center">
               {% if card.facebook %}
