@@ -61,28 +61,28 @@
         <p class="container mx-auto py-4 w-full md:w-1/2 text-center -mt-24">
           {{ card.description }}
         </p>
-        <div class="flex w-3/4 mx-auto mt-4 justify-between">
+        <div class="flex flex-col md:flex-row w-full md:w-3/4 mx-auto mt-4 justify-between">
           {% if card.google_map %}
-            <div class="h-72">
+            <div class="w-full">
               {% autoescape off %}
                 {{ card.google_map }}
               {% endautoescape %}
             </div>
           {% endif %}
-          <div class="flex flex-col justify-around">
-            <div class="flex items-center">
+          <div class="flex flex-col justify-around w-full">
+            <div class="flex flex-col md:flex-row items-start md:items-center">
               {% if card.facebook %}
                 <a href="{{ card.facebook }}" class="flex items-center">
                   <img class="w-8 mr-2" src="{% static 'icons/facebook.svg' %}" alt="facebook icon">
                   {{ card.facebook }}
                 </a>
               {% endif %}
-              <a href="mailto:{{ card.user.email }}" class="flex items-center ml-8">
+              <a href="mailto:{{ card.user.email }}" class="flex items-center md:ml-8">
                 <span class="material-icons text-gray-500 text-4xl mr-2">email</span>
                 {{ card.user.email }}
               </a>
             </div>
-            <a class="flex items-center" href="#contacto"><span class="material-icons text-gray-500 text-4xl mr-2">inventory_2</span> Haz tu pedido</a>
+            <a id="pedido" class="flex items-center" href="#contact"><span class="material-icons text-gray-500 text-4xl mr-2">inventory_2</span> Haz tu pedido</a>
           </div>
         </div>
         <div class="h-14"></div>

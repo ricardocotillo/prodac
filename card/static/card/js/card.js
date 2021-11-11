@@ -18,6 +18,10 @@ function pageData() {
       navIcons.forEach(icon => icon.addEventListener('click', e => {
         this.page = e.target.getAttribute('href')
       }))
+      const pedido = document.querySelector('#pedido')
+      pedido.addEventListener('click', e => {
+        this.page = e.target.getAttribute('href')
+      })
     },
     page: '#home'
   }
@@ -35,4 +39,9 @@ function menuData() {
       this.current = icon
     }
   }
+}
+
+const iframe = document.querySelector('iframe')
+if (iframe) {
+  iframe.classList.add('w-full')
 }
