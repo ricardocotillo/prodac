@@ -6,7 +6,7 @@ from django.views.generic import View, UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from authentication.models import User
 from card.models import Card
-from .widgets import QuillWidget
+from .widgets import CropperWidget
 from .mixins import JsonResponseMixin
 
 class DashboardView(LoginRequiredMixin, View):
@@ -47,6 +47,7 @@ class UpdateCardView(LoginRequiredMixin, JsonResponseMixin, UpdateView):
         'phone',
         'whatsapp',
         'facebook',
+        'google_map',
     ]
     
     template_name = 'dashboard/card.html'
@@ -67,3 +68,8 @@ class UpdateCardView(LoginRequiredMixin, JsonResponseMixin, UpdateView):
         ctx = super().get_context_data(**kwargs)
         ctx['card_url'] = self.request.build_absolute_uri(reverse('card', kwargs={'pk': self.object.pk}))
         return ctx
+
+    def get_form(self, form_class=None):
+        form = super().get_form(form_class=form_class)
+        form.fields.get('logo').widget = CropperWidget()
+        return form

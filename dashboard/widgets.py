@@ -17,3 +17,6 @@ class ColorInput(Input):
 
 class CropperWidget(ClearableFileInput):
     template_name = 'components/widgets/cropper_file_input.html'
+
+    class Media:
+        js = ('js/forms.js',)

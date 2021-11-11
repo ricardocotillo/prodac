@@ -1,6 +1,3 @@
-const videoInput = document.querySelector('#id_video')
-const podcastInput = document.querySelector('#id_podcast')
-
 function qrData() {
   return {
     loading: false,
@@ -163,41 +160,4 @@ function updateCard() {
         })
     }
   }
-}
-
-videoInput.addEventListener('change', function(e) {
-  const url = videoInput.value
-  const videoId = youtubeParser(url)
-  if (videoId) {
-    videoInput.value = 'https://youtube.com/embed/' + videoId
-  } else {
-    videoInput.value = ''
-  }
-})
-
-function youtubeParser(url) {
-  const regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/;
-  const match = url.match(regExp);
-  return (match&&match[7].length==11)? match[7] : false;
-}
-
-podcastInput.addEventListener('change', function() {
-  const url = podcastInput.value
-  const parsedURL = spotifyParser(url)
-  podcastInput.value = parsedURL
-})
-
-function spotifyParser(url) {
-  if (url.search('embed') >= 0) return url
-  let parsedURL = null
-  const kws = ['album', 'track', 'playlist', 'episode']
-  for (let i = 0; i < kws.length; i++) {
-    if (url.search(kws[i]) >= 0) {
-      const urlParts = url.split(kws[i])
-      urlParts[0] = urlParts[0] + 'embed/'
-      parsedURL = urlParts.join(kws[i])
-      break
-    }
-  }
-  return parsedURL
 }

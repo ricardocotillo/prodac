@@ -55,7 +55,9 @@
             </ul>
           </div>
         </div>
-        <div class="w-60 h-60 rounded-full bg-red-400 mx-auto -translate-y-1/2"></div>
+        {% if card.logo %}
+          <img class="w-60 h-60 rounded-full mx-auto bg-white -translate-y-1/2 object-cover object-center" src="{{ card.logo.url }}" />
+        {% endif %}
         <p class="container mx-auto py-4 w-full md:w-1/2 text-center -mt-24">
           {{ card.description }}
         </p>
