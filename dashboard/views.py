@@ -82,6 +82,12 @@ class OrderView(LoginRequiredMixin, JsonResponseMixin, FormView):
 
     form_class = OrderForm
 
+    def get_initial(self):
+        initial = super().get_initial()
+        initial['name'] = self.request.user.first_name + self.request.user.last_name
+        initial['email'] = self.request.user.email
+        return initial
+
     def form_valid(self, form = None):
         html_message = render_to_string('email/order.html', {'order': form.cleaned_data})
         send_mail(
