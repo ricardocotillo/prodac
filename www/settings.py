@@ -197,11 +197,6 @@ EMAIL_USE_TLS = True
 
 DEFAULT_FROM_EMAIL = 'rcotillo@cotillo.tech'
 
-if not DEBUG:
-    GS_BUCKET_NAME = 'identicard-328401.appspot.com'
-    GS_DEFAULT_ACL = "publicRead"
-    DEFAULT_FILE_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
-
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
