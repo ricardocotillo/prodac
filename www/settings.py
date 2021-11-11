@@ -160,7 +160,7 @@ LANGUAGES = [
 
 LOCALE_PATHS = [os.path.join(BASE_DIR, 'locale')]
 
-ADMINS = [('Carlos Bravo', 'carlos.bravo@identicard.space'),]
+ADMINS = [('Ricardo Cotillo', 'rcotillo@cotillo.tech'),]
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
@@ -195,8 +195,7 @@ EMAIL_HOST_PASSWORD = env('SENDGRID_API_KEY')
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
-DEFAULT_FROM_EMAIL = 'info@identicard.space'
-
+DEFAULT_FROM_EMAIL = 'rcotillo@cotillo.tech'
 
 if not DEBUG:
     GS_BUCKET_NAME = 'identicard-328401.appspot.com'

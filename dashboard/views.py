@@ -1,7 +1,7 @@
 from django.core.mail import send_mail, mail_admins
 from django.utils.translation import gettext as _
 from django.contrib import messages
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from django.urls import reverse
 from django.views.generic import View, UpdateView, FormView
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -82,6 +82,12 @@ class OrderView(LoginRequiredMixin, JsonResponseMixin, FormView):
 
     form_class = OrderForm
 
+    def set_success_messages(self):
+        messages.success(self.request, 'Tu orden ha sido enviada con éxito')
+
+    def get_success_url(self) -> str:
+        return reverse('order')
+
     def get_initial(self):
         initial = super().get_initial()
         initial['name'] = self.request.user.first_name + self.request.user.last_name
@@ -96,9 +102,16 @@ class OrderView(LoginRequiredMixin, JsonResponseMixin, FormView):
             from_email=None,
             recipient_list=[form.cleaned_data.get('email')]
         )
-        mail_admins(
-            subject='Nuevo pedido',
+        send_mail(
+            subject='Haz recibido un nuevo Pedido',
             message='',
             html_message=html_message,
+            from_email=None,
+            recipient_list=['ricardo.cotillo@gmail.com']
         )
+        # mail_admins(
+        #     subject='Nuevo pedido',
+        #     message='',
+        #     html_message=html_message,
+        # )
         return super().form_valid(form)
