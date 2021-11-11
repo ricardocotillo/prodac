@@ -9,7 +9,10 @@
 {% block content %}
   {% with card.user as user %}
     <nav class="container mx-auto flex justify-between items-center h-16">
-      <img class="h-8 md:h-10" src="{% if card.logo %}{{ card.logo.url }}{% else %}{% static 'card/img/logo.svg' %}{% endif %}" />
+      <div class="flex items-center">
+        <img class="h-3 md:h-6" src="{% static 'icons/logo-beaker.png' %}" />
+        <img class="h-10 md:h-14" src="{% static 'icons/logo-ferreprodac.png' %}" />
+      </div>
       <div>
         <button data-text="{{ card_url }}" class="bg-primary text-white rounded-full mx-1 px-2 py-1 text-sm inline-flex items-center copy-to-clipboard">
           <span class="material-icons text-sm md:mr-1">link</span>
@@ -56,19 +59,22 @@
         <p class="container mx-auto py-4 w-full md:w-1/2 text-center -mt-24">
           {{ card.description }}
         </p>
-        <div class="flex w-1/2 mx-auto">
-          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3902.839169311068!2d-77.12840208459409!3d-11.98562824403094!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9105cdb805a6c3cb%3A0xf96e286e99869177!2sPRODAC!5e0!3m2!1sen!2spe!4v1636586654915!5m2!1sen!2spe" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-          <div>
-            {% if card.facebook %}
-              <div class="flex items-center">
-                <img class="w-7 mr-2" src="{% static 'icons/facebook.svg' %}" alt="facebook icon">
-                {{ card.facebook }}
-              </div>
-            {% endif %}
+        <div class="flex w-3/4 mx-auto mt-4 justify-between">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3902.839169311068!2d-77.12840208459409!3d-11.98562824403094!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9105cdb805a6c3cb%3A0xf96e286e99869177!2sPRODAC!5e0!3m2!1sen!2spe!4v1636586654915!5m2!1sen!2spe" width="600" height="250" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+          <div class="flex flex-col justify-around">
             <div class="flex items-center">
-              <a class="material-icons text-gray-500 text-4xl mr-2">email</a>
-              {{ card.user.email }}
+              {% if card.facebook %}
+                <a href="{{ card.facebook }}" class="flex items-center">
+                  <img class="w-8 mr-2" src="{% static 'icons/facebook.svg' %}" alt="facebook icon">
+                  {{ card.facebook }}
+                </a>
+              {% endif %}
+              <a href="mailto:{{ card.user.email }}" class="flex items-center ml-8">
+                <span class="material-icons text-gray-500 text-4xl mr-2">email</span>
+                {{ card.user.email }}
+              </a>
             </div>
+            <a class="flex items-center" href="#contacto"><span class="material-icons text-gray-500 text-4xl mr-2">inventory_2</span> Haz tu pedido</a>
           </div>
         </div>
         <div class="h-14"></div>
@@ -97,32 +103,3 @@
     </main>
   {% endwith %}
 {% endblock content %}
-
-{% comment %} <div class="px-5 flex flex-col items-center justify-center h-1/2 my-16">
-          <div class="flex flex-col md:flex-row items-center backdrop-blur-lg rounded-md md:rounded-full px-4 py-2">
-            <div>
-              {% if card.logo %}
-                <img class="w-24 h-24 md:w-40 md:h-40 rounded-full mx-auto" src="{{ user.logo.url }}" alt="">
-              {% endif %}
-            </div>
-            <div class="md:mx-10 text-center">
-              {% if card.phone %}
-                <a
-                  href="tel:{{ card.phone }}"
-                  class="font-semibold text-white text-base mr-1 material-icons bg-primary w-8 h-8 inline-flex justify-center items-center rounded-full">phone</a>
-              {% endif %}
-              {% if user.email %}
-                <a
-                  href="mailto:{{ user.email }}"
-                  class="font-semibold text-white text-base mr-1 material-icons bg-primary w-8 h-8 inline-flex justify-center items-center rounded-full">email</a>
-              {% endif %}
-              {% if card.whatsapp %}
-                <a
-                  href="https://wa.me/51{{ card.whatsapp }}" class="bg-primary rounded-full p-1 w-8 h-8 inline-flex justify-center items-center mt-1">
-                  <img class="w-4" src="{% static 'icons/whatsapp.svg' %}" />
-                </a>
-              {% endif %}
-              <h6 class="text-white uppercase">{{ card.name }}</h6>
-            </div>
-          </div>
-        </div> {% endcomment %}
