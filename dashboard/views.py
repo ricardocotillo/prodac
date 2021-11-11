@@ -59,7 +59,7 @@ class UpdateCardView(LoginRequiredMixin, JsonResponseMixin, UpdateView):
     template_name = 'dashboard/card.html'
 
     def set_success_messages(self):
-        return messages.success(self.request, _('Identicard updated successfully'))
+        return messages.success(self.request, 'Actualizado correctamente')
 
     def get_success_url(self):
         return reverse('config')
