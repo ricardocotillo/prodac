@@ -57,3 +57,7 @@ class ProcessContact(JsonResponseMixin, View):
             return self.form_valid(form)
         else:
             return self.form_invalid(form)
+
+class ManifestView(DetailView):
+    model = Card
+    template_name = "card/manifest.json"
