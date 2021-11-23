@@ -7,8 +7,9 @@ from django.views import View
 from django.urls import reverse
 from django.contrib import messages
 from django.core.mail import send_mail
+from django.conf import settings
 
-from .models import Card, RegistrationToken
+from .models import Card
 from .forms import ContactForm
 
 from dashboard.mixins import JsonResponseMixin
@@ -26,6 +27,7 @@ class CardDetailView(DetailView):
         ctx = super().get_context_data(**kwargs)
         contact_form = ContactForm()
         ctx['contact_form'] = contact_form
+        ctx['vapid_key'] = settings.VAPIDKEY
         ctx['card_url'] = self.request.build_absolute_uri(reverse('card', kwargs={'pk': self.object.pk})) 
         return ctx
 
@@ -65,7 +67,6 @@ class CreateRegistration(View):
         t = request.POST.get('token')
         card = Card.objects.get(pk=pk)
         token, created = card.tokens.get_or_create(token=t)
-        print('_________________________', created)
         return JsonResponse({'token': token.token, 'card': token.card_id})
 
 class ManifestView(DetailView):
