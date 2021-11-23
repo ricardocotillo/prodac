@@ -1,3 +1,4 @@
+from django.http.response import JsonResponse
 from django.template.loader import render_to_string
 from django.utils.translation import gettext as _
 from django.shortcuts import render
@@ -7,7 +8,7 @@ from django.urls import reverse
 from django.contrib import messages
 from django.core.mail import send_mail
 
-from .models import Card
+from .models import Card, RegistrationToken
 from .forms import ContactForm
 
 from dashboard.mixins import JsonResponseMixin
@@ -57,6 +58,15 @@ class ProcessContact(JsonResponseMixin, View):
             return self.form_valid(form)
         else:
             return self.form_invalid(form)
+
+class CreateRegistration(View):
+    def post(self, request, *args, **kwargs):
+        pk = kwargs.get('pk')
+        t = request.POST.get('token')
+        card = Card.objects.get(pk=pk)
+        token, created = card.tokens.get_or_create(token=t)
+        print('_________________________', created)
+        return JsonResponse({'token': token.token, 'card': token.card_id})
 
 class ManifestView(DetailView):
     model = Card

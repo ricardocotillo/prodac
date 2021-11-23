@@ -28,3 +28,10 @@ class Product(models.Model):
 
     def __str__(self) -> str:
         return self.name
+
+class RegistrationToken(models.Model):
+    token = models.CharField(max_length=500, null=True)
+    card = models.ForeignKey('card.Card', null=True, on_delete=models.SET_NULL, related_name='tokens')
+
+    def __str__(self):
+        return self.token

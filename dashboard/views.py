@@ -109,9 +109,4 @@ class OrderView(LoginRequiredMixin, JsonResponseMixin, FormView):
             from_email=None,
             recipient_list=['ricardo.cotillo@gmail.com', 'contacto@prodac.pe']
         )
-        # mail_admins(
-        #     subject='Nuevo pedido',
-        #     message='',
-        #     html_message=html_message,
-        # )
         return super().form_valid(form)

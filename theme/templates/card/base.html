@@ -37,5 +37,47 @@
       </svg>
     </div>
     {% include 'components/alerts/messages.html' %}
+    {% url 'create_registration' card.pk as registration_url %}
+    {{ registration_url|json_script:'regURL' }}
+    {{ settings.VAPIDKEY|json_script:'vapidKey' }}
+    <script type="module">
+      // Import the functions you need from the SDKs you need
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-app.js"
+      import { getMessaging, getToken } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-messaging.js"
+
+      const regURL = JSON.parse(document.querySelector('#regURL').textContent)
+      const vapidKey = JSON.parse(document.querySelector('#vapidKey').textContent)
+
+      // Your web app's Firebase configuration
+      const firebaseConfig = {
+        apiKey: "AIzaSyBfyMeRTF5FwGdpTxuVssfSsRS2y9lHkoI",
+        authDomain: "prodac-7738f.firebaseapp.com",
+        projectId: "prodac-7738f",
+        storageBucket: "prodac-7738f.appspot.com",
+        messagingSenderId: "572770346423",
+        appId: "1:572770346423:web:83800ad9cb3a61a1a0f432",
+      }
+
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig)
+
+      const messaging = getMessaging()
+
+      getToken(messaging, { vapidKey }).then((currentToken) => {
+        if (currentToken) {
+          const formData = new FormData()
+          formData.append('token', currentToken)
+          formData.append('csrfmiddlewaretoken', '{{ csrf_token }}')
+          fetch(regURL, {
+            method: 'POST',
+            body: formData,
+          })
+        } else {
+          console.log('No registration token available. Request permission to generate one.')
+        }
+      }).catch((err) => {
+        console.log('An error occurred while retrieving token. ', err)
+      })
+    </script>
   </body>
 </html>

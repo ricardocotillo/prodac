@@ -9,7 +9,7 @@ urlpatterns = [
     path('card/', include('card.urls')),
     path('authentication/', include('authentication.urls')),
     path('dashboard/', include('dashboard.urls')),
-    path('serviceworker', TemplateView.as_view(template_name='card/serviceworker.js'), name='sw'),
+    path('firebase-messaging-sw.js', TemplateView.as_view(template_name='card/serviceworker.js'), name='sw'),
     path('', include('web.urls'))
 ]
 
