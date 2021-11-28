@@ -48,11 +48,9 @@ function basicFormData() {
         body: formData,
       })
         .then(res => {
-          console.log(res)
           return res.json()
         })
         .then(json => {
-          console.log(json)
           this.loading = false
           this.processResponse(json)
         })

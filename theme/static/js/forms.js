@@ -78,8 +78,6 @@ function cropperWidgetData(value=null) {
     height: 500,
     initialValue: value,
     init() {
-      this.width = Number(this.$refs.imageInput.dataset.width)
-      this.height = Number(this.$refs.imageInput.dataset.height)
       window.addEventListener(`image:cropped:${this.width}:${this.height}`, e => {
         this.src = e.detail.dataURL
         fire('logo:update', {dataURL: this.src})

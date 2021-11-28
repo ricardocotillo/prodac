@@ -144,7 +144,6 @@ function updateCard() {
         })
         .catch(err => {
           this.loading = false
-          console.log(err)
         })
     }
   }
