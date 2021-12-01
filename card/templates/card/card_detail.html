@@ -43,14 +43,14 @@
             <ul class="splide__list">
               {% if card.background %}
                 <li class="splide__slide">
-                  <img class="w-full" src="{{ card.background.url }}" />
+                  <img class="w-full h-screen-1/4 md:h-screen-1/2 object-center object-cover" src="{{ card.background.url }}" />
                 </li>
               {% endif %}
               <li class="splide__slide">
-                <img class="w-full" src="{% static 'card/img/banner-alambre.png' %}" />
+                <img class="w-full h-screen-1/4 md:h-screen-1/2 object-center object-cover" src="{% static 'card/img/banner-alambre.png' %}" />
               </li>
               <li class="splide__slide">
-                <img class="w-full" src="{% static 'card/img/banner-clavos.png' %}" />
+                <img class="w-full h-screen-1/4 md:h-screen-1/2 object-center object-cover" src="{% static 'card/img/banner-clavos.png' %}" />
               </li>
             </ul>
           </div>
