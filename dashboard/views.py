@@ -1,7 +1,7 @@
-from django.core.mail import send_mail, mail_admins
+from django.core.mail import send_mail
 from django.utils.translation import gettext as _
 from django.contrib import messages
-from django.shortcuts import redirect, render
+from django.shortcuts import render
 from django.urls import reverse
 from django.views.generic import View, UpdateView, FormView
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -94,7 +94,7 @@ class OrderView(LoginRequiredMixin, JsonResponseMixin, FormView):
         initial['email'] = self.request.user.email
         return initial
 
-    def form_valid(self, form = None):
+    def form_valid(self, form=None):
         html_message = render_to_string('email/order.html', {'order': form.cleaned_data})
         send_mail(
             subject='Tu pedido ha sido enviado con éxito',

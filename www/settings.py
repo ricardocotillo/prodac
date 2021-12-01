@@ -173,11 +173,14 @@ INTERNAL_IPS = [
 LOGIN_REDIRECT_URL = '/dashboard/'
 LOGOUT_REDIRECT_URL = '/'
 
-EMAIL_HOST = 'smtp.sendgrid.net'
-EMAIL_HOST_USER = 'apikey'
-EMAIL_HOST_PASSWORD = env('SENDGRID_API_KEY')
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
+EMAIL_BACKEND = 'sendgrid_backend.SendgridBackend'
+SENDGRID_API_KEY = env('SENDGRID_API_KEY')
+SENDGRID_SANDBOX_MODE_IN_DEBUG = False
+# EMAIL_HOST = 'smtp.sendgrid.net'
+# EMAIL_HOST_USER = 'apikey'
+# EMAIL_HOST_PASSWORD = env('SENDGRID_API_KEY')
+# EMAIL_PORT = 587
+# EMAIL_USE_TLS = True
 
 DEFAULT_FROM_EMAIL = 'rcotillo@cotillo.tech'
 
