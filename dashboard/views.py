@@ -53,7 +53,7 @@ class UpdateCardView(LoginRequiredMixin, JsonResponseMixin, UpdateView):
         'phone',
         'whatsapp',
         'facebook',
-        'google_map',
+        'address',
     ]
     
     template_name = 'dashboard/card.html'

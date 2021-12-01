@@ -56,20 +56,22 @@
           </div>
         </div>
         {% if card.logo %}
-          <img class="w-60 h-60 rounded-full mx-auto bg-white -translate-y-1/2 object-cover object-center" src="{{ card.logo.url }}" />
+          <img class="w-32 h-32 md:w-60 md:h-60 rounded-full mx-auto bg-white -translate-y-1/2 object-cover object-center" src="{{ card.logo.url }}" />
         {% endif %}
-        <p class="container mx-auto py-4 w-full md:w-1/2 text-center -mt-24">
+        <p class="container mx-auto py-4 w-full md:w-1/2 text-center -mt-14">
           {{ card.description }}
         </p>
         <div class="flex flex-col md:flex-row w-full md:w-3/4 mx-auto mt-4 justify-between">
-          {% if card.google_map %}
-            <div class="w-full">
-              {% autoescape off %}
-                {{ card.google_map }}
-              {% endautoescape %}
-            </div>
+          {% if card.address %}
+            <iframe
+              class="border-none w-full h-96"
+              loading="lazy"
+              allowfullscreen
+              src="https://www.google.com/maps/embed/v1/place?key=AIzaSyAIw0x3Z162zuw1xmOGH3zo324YQQibgNo
+                &q={{ card.address }}">
+            </iframe>
           {% endif %}
-          <div class="flex flex-col justify-around w-full">
+          <div class="flex flex-col justify-around w-full p-8">
             <div class="flex flex-col md:flex-row items-start md:items-center">
               {% if card.facebook %}
                 <a href="{{ card.facebook }}" class="flex items-center">
