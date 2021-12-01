@@ -220,11 +220,16 @@ LOGGING = {
             'level': 'ERROR',
             'filters': ['require_debug_false'],
             'class': 'django.utils.log.AdminEmailHandler'
-        }
+        },
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(BASE_DIR, '/debug.log'),
+        },
     },
     'loggers': {
         'django': {
-            'handlers': ['console', 'console_debug_false', 'mail_admins'],
+            'handlers': ['console', 'console_debug_false', 'mail_admins', 'file'],
             'level': 'INFO',
         },
         'django.server': {

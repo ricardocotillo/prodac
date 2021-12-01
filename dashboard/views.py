@@ -85,12 +85,12 @@ class OrderView(LoginRequiredMixin, JsonResponseMixin, FormView):
     def set_success_messages(self):
         messages.success(self.request, 'Tu orden ha sido enviada con éxito')
 
-    def get_success_url(self) -> str:
+    def get_success_url(self):
         return reverse('order')
 
     def get_initial(self):
         initial = super().get_initial()
-        initial['name'] = self.request.user.first_name + self.request.user.last_name
+        initial['name'] = self.request.user.first_name + ' ' + self.request.user.last_name
         initial['email'] = self.request.user.email
         return initial
 
