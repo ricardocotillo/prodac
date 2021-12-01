@@ -222,7 +222,7 @@ LOGGING = {
             'class': 'django.utils.log.AdminEmailHandler'
         },
         'file': {
-            'level': 'INFO',
+            'level': 'DEBUG',
             'class': 'logging.FileHandler',
             'filename': os.path.join(BASE_DIR, 'debug.log'),
         },
@@ -230,7 +230,7 @@ LOGGING = {
     'loggers': {
         'django': {
             'handlers': ['console', 'console_debug_false', 'mail_admins', 'file'],
-            'level': 'INFO',
+            'level': 'DEBUG',
         },
         'django.server': {
             'handlers': ['django.server'],
