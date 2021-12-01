@@ -18,7 +18,6 @@
   "start_url": "{% url 'card' card.pk %}",
   "background_color": "#3367D6",
   "display": "standalone",
-  "scope": "/",
   "theme_color": "#3367D6",
   "description": "Web FerreProdac"
 }
