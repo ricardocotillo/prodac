@@ -10,13 +10,17 @@
   {% with card.user as user %}
     <nav class="container mx-auto flex justify-between items-center h-16">
       <div class="flex items-center">
-        <img class="h-3 md:h-6" src="{% static 'icons/logo-beaker.png' %}" />
-        <img class="h-10 md:h-14" src="{% static 'icons/logo-ferreprodac.png' %}" />
+        <img class="h-2 md:h-6" src="{% static 'icons/logo-beaker.png' %}" />
+        <img class="h-8 md:h-14" src="{% static 'icons/logo-ferreprodac.png' %}" />
       </div>
       <div>
         <button data-text="{{ card_url }}" class="bg-primary text-white rounded-full mx-1 px-2 py-1 text-sm inline-flex items-center copy-to-clipboard">
           <span class="material-icons text-sm md:mr-1">link</span>
           <span class="hidden md:inline">Link</span>
+        </button>
+        <button id="add-btn" class="bg-primary text-white rounded-full mx-1 px-2 py-1 text-sm inline-flex items-center">
+          <span class="material-icons text-sm md:mr-1">phone_iphone</span>
+          <span class="hidden md:inline">Agregar</span>
         </button>
         <a href="whatsapp://send?text={{ request.scheme }}://{{ request.get_host }}{{ request.get_full_path }}">
           <button class="bg-primary text-white rounded-full mx-1 px-2 py-1 text-sm inline-flex items-center">
