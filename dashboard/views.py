@@ -100,13 +100,15 @@ class OrderView(LoginRequiredMixin, JsonResponseMixin, FormView):
             subject='Tu pedido ha sido enviado con éxito',
             message='Prodac ha recibido tu pedido y se contactará contigo a la brevedad.',
             from_email=None,
-            recipient_list=[form.cleaned_data.get('email')]
+            recipient_list=[form.cleaned_data.get('email')],
+            fail_silently=False,
         )
         send_mail(
             subject='Haz recibido un nuevo Pedido',
             message='',
             html_message=html_message,
             from_email=None,
-            recipient_list=['ricardo.cotillo@gmail.com']
+            recipient_list=['ricardo.cotillo@gmail.com'],
+            fail_silently=False,
         )
         return super().form_valid(form)
