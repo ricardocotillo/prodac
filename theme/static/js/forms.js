@@ -78,14 +78,26 @@ function cropperWidgetData(value=null) {
     height: 500,
     initialValue: value,
     init() {
+      this.width = this.$refs.imageInput.dataset.width ?? this.width
+      this.height = this.$refs.imageInput.dataset.height ?? this.height
+      this.width = Number(this.width)
+      this.height = Number(this.height)
       window.addEventListener(`image:cropped:${this.width}:${this.height}`, e => {
         this.src = e.detail.dataURL
-        fire('logo:update', {dataURL: this.src})
+        if (this.width > 500) {
+          fire('background:update', {dataURL: this.src})
+        } else {
+          fire('logo:update', {dataURL: this.src})
+        }
       })
       window.addEventListener(`image:cancel:${this.width}:${this.height}`, () => {
         this.$refs.imageInput.value = ''
         this.src = this.initialValue
-        fire('logo:update', {dataURL: null})
+        if (this.width > 500) {
+          fire('background:update', {dataURL: null})
+        } else {
+          fire('logo:update', {dataURL: null})
+        }
       })
     },
     changeImage(e) {

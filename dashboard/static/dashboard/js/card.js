@@ -54,6 +54,7 @@ function cropIconData() {
     width: null,
     height: null,
     crop(e) {
+
       this.src = e.detail.result
       this.width = e.detail.width
       this.height = e.detail.height
@@ -61,7 +62,7 @@ function cropIconData() {
       const img = this.$refs.cropperImg
       this.$nextTick(() => {
         this.cropper = new Cropper(img, {
-          aspectRatio: 1,
+          aspectRatio: this.width / this.height,
           viewMode: 0,
           minContainerWidth: 350,
           minContainerHeight: 350,
@@ -89,9 +90,13 @@ function updateCard() {
   return {
     ...basicFormData(),
     logo: null,
+    background: null,
     init() {
       window.addEventListener('logo:update', e => {
         this.logo = e.detail.dataURL
+      })
+      window.addEventListener('background:update', e => {
+        this.background = e.detail.dataURL
       })
     },
     async toBlob(dataURL) {
@@ -131,6 +136,10 @@ function updateCard() {
       if (this.logo) {
         const logoBlob = await this.toBlob(this.logo)
         formData.set('logo', logoBlob, 'logo.jpg')
+      }
+      if (this.background) {
+        const bgBlob = await this.toBlob(this.background)
+        formData.set('background', bgBlob, 'logo.jpg')
       }
       const url = window.location.pathname
       fetch(url, {

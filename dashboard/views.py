@@ -75,6 +75,7 @@ class UpdateCardView(LoginRequiredMixin, JsonResponseMixin, UpdateView):
     def get_form(self, form_class=None):
         form = super().get_form(form_class=form_class)
         form.fields.get('logo').widget = CropperWidget()
+        form.fields.get('background').widget = CropperWidget(attrs={'data-width': 1920, 'data-height': 1080})
         return form
 
 class OrderView(LoginRequiredMixin, JsonResponseMixin, FormView):
