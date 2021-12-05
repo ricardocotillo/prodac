@@ -15,8 +15,9 @@ class Card(models.Model):
     whatsapp = models.CharField(max_length=15, blank=True, null=True)
     facebook = models.URLField(max_length=200, blank=True, null=True)
     address = models.CharField(max_length=250, null=True, blank=True, verbose_name=_('address'))
+    products = models.ManyToManyField('card.Product', related_name='cards')
 
-    def __str__(self) -> str:
+    def __str__(self):
         return self.user.email
 
 class Product(models.Model):
@@ -24,9 +25,8 @@ class Product(models.Model):
     image = models.ImageField(upload_to=make_file_path, null=True, blank=True, verbose_name=_('image'))
     description = models.TextField(null=True, blank=True, verbose_name=_('description'))
     price = models.DecimalField(decimal_places=2, max_digits=10, null=True, blank=True, verbose_name=_('price'))
-    card = models.ForeignKey('card.Card', on_delete=models.CASCADE, related_name='services')
 
-    def __str__(self) -> str:
+    def __str__(self):
         return self.name
 
 class RegistrationToken(models.Model):
