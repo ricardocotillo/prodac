@@ -1,5 +1,5 @@
-<div class="flex justify-center container mx-auto">
+<div class="flex justify-center flex-wrap container mx-auto">
   {% for p in card.products.all %}
-    <span class="bg-indigo-400 px-3 py-1 rounded-full text-white text-sm mx-2">{{ p.name }}</span>
+    <span class="bg-indigo-400 px-3 py-1 rounded-full text-white text-sm mx-2 mt-1">{{ p.name }}</span>
   {% endfor %}
 </div>
